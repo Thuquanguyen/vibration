@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "458383404221",
+    "project_id": "phone-c2bd6",
+    "storage_bucket": "phone-c2bd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458383404221:android:059fe72a2ca0f925cddbd4",
+        "android_client_info": {
+          "package_name": "com.vibration.massage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458383404221-q824v8g63aqe95joull0h2ug8jhe7rn2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vibration.massage",
+            "certificate_hash": "b1fc8fc6d973450a1f918b736aa106b9852de85d"
+          }
+        },
+        {
+          "client_id": "458383404221-2abdje1ad8ns1nakl2h8pr6k9d26grq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEMNbgcZaJUNPp76A2CPsoZxshfd0TNNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458383404221-2abdje1ad8ns1nakl2h8pr6k9d26grq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
