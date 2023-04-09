@@ -3,11 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vibration_strong/core/assets/app_assets.dart';
 import 'package:vibration_strong/core/common/imagehelper.dart';
+import 'package:vibration_strong/core/local_storage/localStorageHelper.dart';
 import 'package:vibration_strong/core/theme/dimens.dart';
 import 'package:vibration_strong/core/theme/textstyles.dart';
 import 'package:vibration_strong/utils/app_scaffold.dart';
 import 'package:vibration_strong/utils/touchable.dart';
 
+import '../../constants.dart';
 import '../../routes/app_pages.dart';
 import 'welcome_controller.dart';
 
@@ -136,7 +138,8 @@ extension on Welcomescreen {
         ),
         const Spacer(),
         Touchable(
-            onTap: () {
+            onTap: () async{
+              SharePreferencesHelper.setBool(KEY_WELCOME, true);
               Get.toNamed(Routes.PREMIUM);
             },
             child: Container(

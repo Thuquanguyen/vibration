@@ -6,6 +6,7 @@ import 'package:vibration_strong/utils/app_scaffold.dart';
 import 'package:vibration_strong/widget/item_menu.dart';
 
 import '../../widget/premium_widget.dart';
+import '../in_app_manage.dart';
 import 'setting_controller.dart';
 
 class SettingScreen extends GetView<SettingController> {
@@ -20,6 +21,7 @@ class SettingScreen extends GetView<SettingController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (!IAPConnection().isAvailable)
             const PremiumWidget(),
             SizedBox(
               height: 30.h,

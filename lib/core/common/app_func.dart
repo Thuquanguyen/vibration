@@ -103,7 +103,7 @@ class AppFunc {
       {String? message, String? title}) {
     // set up the button
     Widget okButton = TextButton(
-      child: const Text("はい"),
+      child: Text("OKay!",style: TextStyles.defaultStyle,),
       onPressed: () {
         Get.back();
       },
@@ -111,7 +111,7 @@ class AppFunc {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(title ?? "エラー!"),
+      title: Text(title ?? "Notification"),
       content: Text(message ?? ''),
       actions: [
         okButton,

@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:vibration/vibration.dart';
 import 'package:vibration_strong/core/assets/app_assets.dart';
 import 'package:vibration_strong/core/common/app_func.dart';
 import 'package:vibration_strong/core/theme/dimens.dart';
 import 'package:vibration_strong/core/theme/textstyles.dart';
 import 'package:vibration_strong/routes/app_pages.dart';
+import 'package:vibration_strong/screens/audio_player.dart';
 import 'package:vibration_strong/utils/app_scaffold.dart';
 import 'package:vibration_strong/utils/touchable.dart';
 import 'package:filling_slider/filling_slider.dart';
+import 'package:vibration_strong/widget/item_music.dart';
 import '../../core/common/imagehelper.dart';
 import '../../widget/item_vibration.dart';
+import '../in_app_manage.dart';
 import 'home_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
@@ -36,13 +38,16 @@ class Homescreen extends GetView<HomeController> {
         animationDurationContract: const Duration(milliseconds: 250),
         animationCurveExpand: Curves.bounceOut,
         animationCurveContract: Curves.ease,
-        persistentContentHeight: 160,
+        persistentContentHeight: Dimens.screenHeight * 0.32,
         background: Stack(
           children: [
-            ImageHelper.loadFromAsset(AppAssets.imgBacground,
+            Obx(() => ImageHelper.loadFromAsset(
+                controller.backgroundColor.value.isEmpty
+                    ? AppAssets.imgBacground
+                    : controller.backgroundColor.value,
                 width: Dimens.screenWidth,
                 height: Dimens.screenHeight,
-                fit: BoxFit.cover),
+                fit: BoxFit.cover)),
             Column(
               children: [
                 SizedBox(
@@ -73,47 +78,100 @@ class Homescreen extends GetView<HomeController> {
                   ),
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 20.h,
                 ),
-                AudioWave(
-                  height: 32,
-                  width: 88,
-                  spacing: 2.5,
-                  bars: [
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.4, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.3, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.2, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.3, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.9, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 1, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.24, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.54, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.89, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.4, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.36, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.17, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.5, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.33, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 1, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.4, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.3, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.2, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.3, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.6, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.9, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 1, color: Colors.amberAccent),
-                    AudioWaveBar(heightFactor: 0.24, color: Colors.amberAccent)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AudioWave(
+                      height: 32,
+                      width: 88,
+                      spacing: 2.5,
+                      bars: [
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.4, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.3, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.2, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.3, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.9, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 1, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.24, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.54, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.89, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.4, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.36, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.17, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.5, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.33, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 1, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.4, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.3, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.2, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.3, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.6, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.9, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 1, color: Colors.amberAccent),
+                        AudioWaveBar(
+                            heightFactor: 0.24, color: Colors.amberAccent)
+                      ],
+                    ),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    Touchable(
+                        onTap: () {
+                          _showBottomSheet(context);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5.w),
+                          decoration: const BoxDecoration(
+                              color: Colors.amberAccent,
+                              shape: BoxShape.circle),
+                          child: Icon(
+                            Icons.music_note_outlined,
+                            size: 20.w,
+                            color: Colors.white,
+                          ),
+                        ))
                   ],
                 ),
                 SizedBox(
-                  height: 30.h,
+                  height: 20.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -121,56 +179,85 @@ class Homescreen extends GetView<HomeController> {
                     SizedBox(
                       width: 20.w,
                     ),
-                    Obx(() => FillingSlider(
-                        initialValue: controller.initValue.value,
-                        width: 100,
-                        height: 250,
-                        onChange: (a, b) {
-                          controller.progress.value = a;
-                          if (a >= 0.5) {
-                            controller.initValue.value = 0.2;
-                            Get.toNamed(Routes.PREMIUM);
-                          }
-                          print("aaaaa = $a");
-                        },
-                        color: Colors.white,
-                        fillColor: Colors.purple,
-                        child: SizedBox(
-                          width: 100,
-                          height: 220,
-                          child: Column(
-                            children: [
-                              ImageHelper.loadFromAsset(AppAssets.icPremium,
-                                  width: 12.w, height: 12.w),
-                              Text("High",
-                                  style: TextStyles.label2.copyWith(
-                                      fontFamily: GoogleFonts.aleo().fontFamily,
-                                      color: controller.progress.value >= 0.8
-                                          ? Colors.white
-                                          : Colors.black)),
-                              const Spacer(),
-                              ImageHelper.loadFromAsset(AppAssets.icPremium,
-                                  width: 12.w, height: 12.w),
-                              Text(
-                                "Medium",
-                                style: TextStyles.label2.copyWith(
-                                    fontFamily: GoogleFonts.aleo().fontFamily,
-                                    color: controller.progress.value >= 0.5
-                                        ? Colors.white
-                                        : Colors.black),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "Low",
-                                style: TextStyles.label2.copyWith(
-                                    fontFamily: GoogleFonts.aleo().fontFamily,
-                                    color: controller.progress.value >= 0.08
-                                        ? Colors.white
-                                        : Colors.black),
-                              ),
-                            ],
+                    Obx(() => Container(
+                          decoration: BoxDecoration(boxShadow: [
+                            BoxShadow(
+                                color: Colors.purple.withOpacity(.15),
+                                offset: const Offset(1, 0),
+                                blurRadius: 20,
+                                spreadRadius: 3)
+                          ]),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(60.r),
+                            child: FillingSlider(
+                                initialValue: controller.initValue.value,
+                                width: 100,
+                                height: 250,
+                                onChange: (a, b) {
+                                  controller.progress.value = a;
+                                  if (a >= 0.5 &&
+                                      (!IAPConnection().isAvailable)) {
+                                    controller.initValue.value = 0.2;
+                                    Get.toNamed(Routes.PREMIUM);
+                                  }
+                                  Vibration.vibrate(
+                                      amplitude: (a * 255).toInt(),
+                                      repeat: 1,
+                                      intensities: [(a * 100).toInt(), 255]);
+                                },
+                                color: Colors.white,
+                                fillColor: Colors.purple,
+                                child: SizedBox(
+                                  width: 100,
+                                  height: 220,
+                                  child: Column(
+                                    children: [
+                                      if (!IAPConnection().isAvailable)
+                                        ImageHelper.loadFromAsset(
+                                            AppAssets.icPremium,
+                                            width: 12.w,
+                                            height: 12.w),
+                                      Text("High",
+                                          style: TextStyles.label2.copyWith(
+                                              fontFamily:
+                                                  GoogleFonts.aleo().fontFamily,
+                                              color:
+                                                  controller.progress.value >=
+                                                          0.8
+                                                      ? Colors.white
+                                                      : Colors.black)),
+                                      const Spacer(),
+                                      if (!IAPConnection().isAvailable)
+                                        ImageHelper.loadFromAsset(
+                                            AppAssets.icPremium,
+                                            width: 12.w,
+                                            height: 12.w),
+                                      Text(
+                                        "Medium",
+                                        style: TextStyles.label2.copyWith(
+                                            fontFamily:
+                                                GoogleFonts.aleo().fontFamily,
+                                            color:
+                                                controller.progress.value >= 0.5
+                                                    ? Colors.white
+                                                    : Colors.black),
+                                      ),
+                                      const Spacer(),
+                                      Text(
+                                        "Low",
+                                        style: TextStyles.label2.copyWith(
+                                            fontFamily:
+                                                GoogleFonts.aleo().fontFamily,
+                                            color: controller.progress.value >=
+                                                    0.08
+                                                ? Colors.white
+                                                : Colors.black),
+                                      ),
+                                    ],
+                                  ),
+                                )),
                           ),
-                        ))),
+                        )),
                     SizedBox(
                       width: 10.w,
                     ),
@@ -193,8 +280,7 @@ class Homescreen extends GetView<HomeController> {
                           ],
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8.r)),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 10.h),
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
                       child: Center(
                         child: Text(
                           "STOP VIBRATION",
@@ -242,8 +328,20 @@ class Homescreen extends GetView<HomeController> {
                 ),
               ),
               Touchable(
-                  onTap: () {
-                    Get.toNamed(Routes.PREMIUM);
+                  onTap: () async {
+                    // if (!IAPConnection().isAvailable) {
+                    //   Get.toNamed(Routes.PREMIUM);
+                    // } else {
+                    //   AppFunc.showAlertDialog(context,
+                    //       title: 'Coming soon!',
+                    //       message:
+                    //           'The feature to initiate a strong vibration mode just for you.\n\nPlease update the app regularly to keep an eye on this upcoming feature!');
+                    // }
+                    AppFunc.showAlertDialog(context,
+                        title: 'Coming soon!',
+                        message:
+                        'The feature to initiate a strong vibration mode just for you.\n\nPlease update the app regularly to keep an eye on this upcoming feature!');
+
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -254,11 +352,22 @@ class Homescreen extends GetView<HomeController> {
                         width: 0.5,
                       ),
                     ),
-                    width: 25.w,
-                    height: 25.w,
-                    child: Center(
-                      child: ImageHelper.loadFromAsset(AppAssets.icPremium,
-                          width: 12.w, height: 12.w),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Create",
+                          style: TextStyles.defaultStyle,
+                        ),
+                        if (!IAPConnection().isAvailable)
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                        if (!IAPConnection().isAvailable)
+                          ImageHelper.loadFromAsset(AppAssets.icPremium,
+                              width: 12.w, height: 12.w)
+                      ],
                     ),
                   ))
             ],
@@ -268,18 +377,82 @@ class Homescreen extends GetView<HomeController> {
           constraints: BoxConstraints(maxHeight: Dimens.screenHeight * 0.32),
           color: Colors.white,
           width: Dimens.screenWidth,
-          child: GridView.builder(
-            padding: EdgeInsets.symmetric(vertical: 10.h),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5),
-            itemBuilder: (_, index) => ItemVibration(
-              vibrationModel: controller.vibrations[index],
-            ),
-            itemCount: controller.vibrations.length,
-          ),
+          child: Obx(() => GridView.builder(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5),
+                itemBuilder: (_, index) => ItemVibration(
+                  vibrationModel: controller.vibrations[index],
+                  controller: controller,
+                  index: index,
+                ),
+                itemCount: controller.vibrations.length,
+              )),
         ),
         enableToggle: false,
       ),
+    );
+  }
+}
+
+extension on Homescreen {
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return GestureDetector(
+          onTap: () {
+            // AudioPlayerVibration().url = '';
+            // AudioPlayerVibration().currentUrl = '';
+            Navigator.of(context).pop();
+          },
+          child: Container(
+            color: const Color.fromRGBO(0, 0, 0, 0.001),
+            child: GestureDetector(
+              onTap: () {},
+              child: DraggableScrollableSheet(
+                initialChildSize: 0.4,
+                minChildSize: 0.2,
+                maxChildSize: 0.75,
+                builder: (_, controller1) {
+                  return Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25.0),
+                        topRight: Radius.circular(25.0),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.remove,
+                          color: Colors.grey[600],
+                        ),
+                        Expanded(
+                          child: Obx(() => ListView.builder(
+                                controller: controller1,
+                                itemCount: controller.listMusics.length,
+                                itemBuilder: (_, index) {
+                                  return ItemMusic(
+                                    musicModel: controller.listMusics[index],
+                                    controller: controller,
+                                    index: index,
+                                  );
+                                },
+                              )),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

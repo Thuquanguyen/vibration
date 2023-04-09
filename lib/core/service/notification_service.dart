@@ -37,22 +37,35 @@ class NotificationService {
     );
     await localNotifications.initialize(initializationSettings,
         onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);
-    DateTime dateTime = DateTime.now();
     tz.initializeTimeZones();
-    tz.setLocalLocation(tz.getLocation("ICT"));
+    tz.setLocalLocation(tz.getLocation("Asia/Ho_Chi_Minh"));
   }
 
   void showNotification()async{
+    const AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails(
+        'repeating channel id', 'Vibration Strong',
+        channelDescription: 'Did you relax today?\nOpen Vibration App to relax now!');
+    const NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails);
     await localNotifications.zonedSchedule(
         0,
-        'scheduled title',
-        'scheduled body',
-        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-        const NotificationDetails(
-            android: AndroidNotificationDetails(
-                'your channel id', 'your channel name',
-                channelDescription: 'your channel description')),
+        'Vibration Strong',
+        'Did you relax today?\nOpen Vibration App to relax now!',
+        tz.TZDateTime.now(tz.local).add(const Duration(hours: 7,minutes: 0,seconds: 0)),
+        notificationDetails,
         androidAllowWhileIdle: true,
+        matchDateTimeComponents: DateTimeComponents.time,
+        uiLocalNotificationDateInterpretation:
+        UILocalNotificationDateInterpretation.absoluteTime);
+    await localNotifications.zonedSchedule(
+        1,
+        'Vibration Strong',
+        'Did you relax today?\nOpen Vibration App to relax now!',
+        tz.TZDateTime.now(tz.local).add(const Duration(hours: 20,minutes: 0,seconds: 0)),
+        notificationDetails,
+        androidAllowWhileIdle: true,
+        matchDateTimeComponents: DateTimeComponents.time,
         uiLocalNotificationDateInterpretation:
         UILocalNotificationDateInterpretation.absoluteTime);
   }

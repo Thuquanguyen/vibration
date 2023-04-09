@@ -6,6 +6,7 @@ class VibrationModel {
   String? title;
   bool? isPremium;
   Function? onTap;
+  bool? isSelected;
 
-  VibrationModel({this.icon, this.title, this.onTap,this.iconData,this.isPremium = true});
+  VibrationModel({this.icon, this.title, this.onTap,this.iconData,this.isPremium = true,this.isSelected = false});
 }

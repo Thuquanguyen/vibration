@@ -2,10 +2,14 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:intl/intl.dart';
 import 'package:vibration_strong/core/base/base_controller.dart';
+import 'package:vibration_strong/core/common/app_func.dart';
 import 'package:vibration_strong/core/model/package_model.dart';
 import 'package:vibration_strong/routes/app_pages.dart';
 
+import '../../constants.dart';
+import '../../core/local_storage/localStorageHelper.dart';
 import '../../core/model/purchasable_product.dart';
 import '../in_app_manage.dart';
 
@@ -16,12 +20,13 @@ class PremiumController extends BaseController {
   RxList<PackageModel> packages = <PackageModel>[
     PackageModel(title: 'Popular', unit: 'Weekly', price: '69.000 đ'),
     PackageModel(
-        title: '3 Day\nFree Trial',
+        title: 'Extra\n10 Days',
         unit: 'Monthly',
         price: '289.000 đ',
         isSelected: true),
     PackageModel(title: 'Best Price', unit: 'Lifetime', price: '579.000 đ'),
   ].obs;
+  RxInt indexSelected = 1.obs;
 
   @override
   void onInit() {
@@ -48,6 +53,7 @@ class PremiumController extends BaseController {
       packages[i].isSelected = false;
     }
     packages[index].isSelected = true;
+    indexSelected.value = index;
     packages.refresh();
   }
 
@@ -66,45 +72,95 @@ class PremiumController extends BaseController {
     };
     final response = await iapConnection.queryProductDetails(ids);
     for (var element in response.notFoundIDs) {
+
       print('Purchase $element not found');
     }
-    products =
-        response.productDetails.map((e) => PurchasableProduct(e)).toList().reversed.toList();
-    for (int i = 0; i < products.length; i++) {
-      print(
-          'price = ${products[i].price}\ntitle = ${products[i].title}\ndescription = ${products[i].description}');
+    products = response.productDetails
+        .map((e) => PurchasableProduct(e))
+        .toList()
+        .reversed
+        .toList();
+    if(products.length >= 3){
+      for (int i = 0; i < products.length; i++) {
+        packages[i].price = products[i].price;
+        print(
+            'price = ${products[i].price}\ntitle = ${products[i].title}\ndescription = ${products[i].description}');
+      }
+      packages.refresh();
     }
   }
 
-  Future<void> buy(int index) async {
-    final purchaseParam = PurchaseParam(productDetails: products[index].productDetails);
-    print("product = ${products[index].id}");
-    switch (products[index].id) {
+  Future<void> buy() async {
+
+    final purchaseParam =
+        PurchaseParam(productDetails: products[indexSelected.value].productDetails);
+    print("product = ${products[indexSelected.value].id}");
+    switch (products[indexSelected.value].id) {
       case 'premium_weekly':
       case 'premium_monthly':
       case 'premium_lifetime':
-        await iapConnection.buyNonConsumable(purchaseParam: purchaseParam);
+        await iapConnection.buyConsumable(purchaseParam: purchaseParam);
         break;
       default:
-        throw ArgumentError.value(
-            products[index].productDetails, '${products[index].id} is not a known product');
+        throw ArgumentError.value(products[indexSelected.value].productDetails,
+            '${products[indexSelected.value].id} is not a known product');
     }
   }
 
-  void openPrivacy(){
+  void openPrivacy() {
     Get.toNamed(Routes.PRIVACY);
   }
 
-  void openTerm(){
+  void openTerm() {
     Get.toNamed(Routes.TERM);
   }
 
-  void restore(){
+  void restore() {
+    print("Restore");
     iapConnection.restorePurchases();
   }
 
   void _onPurchaseUpdate(List<PurchaseDetails> purchaseDetailsList) {
+    purchaseDetailsList.forEach(_handlePurchase);
     // Handle purchases here
+  }
+
+  void _handlePurchase(PurchaseDetails purchaseDetails) {
+    // print('STATUSSSS = ${purchaseDetails.status}');
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    if (purchaseDetails.status == PurchaseStatus.purchased) {
+      switch (purchaseDetails.productID) {
+        case 'premium_weekly':
+          SharePreferencesHelper.setString(KEY_PURCHASE,
+              dateFormat.format(DateTime.now().add(const Duration(days: 7))));
+          Get.offAllNamed(Routes.SPLASH);
+          // print("purchase premium_weekly success");
+          break;
+        case 'premium_monthly':
+          SharePreferencesHelper.setString(KEY_PURCHASE,
+              dateFormat.format(DateTime.now().add(const Duration(days: 40))));
+          Get.offAllNamed(Routes.SPLASH);
+          // print("purchase premium_monthly success");
+          break;
+        case 'premium_lifetime':
+          SharePreferencesHelper.setString(KEY_PURCHASE,
+              dateFormat.format(DateTime.now().add(const Duration(days: 365))));
+          Get.offAllNamed(Routes.SPLASH);
+          // print("purchase premium_lifetime success");
+          break;
+      }
+    } else if (purchaseDetails.status == PurchaseStatus.canceled) {
+      print("purchase cancel success");
+    } else if (purchaseDetails.status == PurchaseStatus.restored) {
+      AppFunc.showAlertDialog(Get.context!,
+          message: "Vibration PurchaseStatus Restored");
+    } else if (purchaseDetails.status == PurchaseStatus.error) {
+      AppFunc.showAlertDialog(Get.context!,
+          message: "An error occurred, please try again!");
+    }
+    if (purchaseDetails.pendingCompletePurchase) {
+      iapConnection.completePurchase(purchaseDetails);
+    }
   }
 
   void _updateStreamOnDone() {

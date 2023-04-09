@@ -2,6 +2,7 @@
     package="com.vibration.massage">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <queries>
         <intent>
@@ -12,6 +13,7 @@
    <application
         android:label="Vibration"
         android:name="${applicationName}"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_app">
         <activity
             android:name=".MainActivity"
@@ -41,6 +43,10 @@
        <meta-data
            android:name="com.google.android.gms.wallet.api.enabled"
            android:value="true" />
+
+       <meta-data
+           android:name="assets.audio.player.notification.icon"
+           android:resource="@drawable/ic_music_custom"/>
 
         <meta-data
             android:name="flutterEmbedding"

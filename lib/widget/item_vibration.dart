@@ -4,27 +4,33 @@ import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';
 import 'package:vibration_strong/core/assets/app_assets.dart';
 import 'package:vibration_strong/core/theme/textstyles.dart';
+import 'package:vibration_strong/screens/home/home_controller.dart';
 import 'package:vibration_strong/utils/touchable.dart';
 
 import '../core/common/imagehelper.dart';
 import '../core/model/vibration_model.dart';
 import '../routes/app_pages.dart';
+import '../screens/in_app_manage.dart';
 
 class ItemVibration extends StatelessWidget {
-  ItemVibration({Key? key, this.vibrationModel}) : super(key: key);
+  ItemVibration({Key? key, this.vibrationModel, this.controller, this.index})
+      : super(key: key);
   VibrationModel? vibrationModel;
+  HomeController? controller;
+  int? index;
 
   @override
   Widget build(BuildContext context) {
     return Touchable(
       onTap: () {
-        // if (vibrationModel?.isPremium == true) {
-        //   Vibration.cancel();
-        //   // Get.toNamed(Routes.PREMIUM);
-        // } else {
-        //   // vibrationModel?.onTap?.call();
-        // }
-        Vibration.cancel();
+        if (!IAPConnection().isAvailable &&  index != 0 && index != 1) {
+          Vibration.cancel();
+          Get.toNamed(Routes.PREMIUM);
+        } else {
+          controller?.changeSelected(index ?? 0);
+          Vibration.cancel();
+          vibrationModel?.onTap?.call();
+        }
         vibrationModel?.onTap?.call();
       },
       child: Container(
@@ -40,7 +46,9 @@ class ItemVibration extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.cyanAccent.withOpacity(0.1),
+                      color: vibrationModel?.isSelected == true
+                          ? Colors.pinkAccent
+                          : Colors.cyanAccent.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(10.r),
                       border: Border.all(
                         color: Colors.lightBlueAccent.withOpacity(0.5),
@@ -50,12 +58,14 @@ class ItemVibration extends StatelessWidget {
                     child: Center(
                       child: ImageHelper.loadFromAsset(
                           vibrationModel?.icon ?? AppAssets.icPremium,
-                          tintColor: Colors.lightBlueAccent,
-                          width: 14.w,
-                          height: 14.w),
+                          tintColor: vibrationModel?.isSelected == true
+                              ? Colors.white
+                              : Colors.lightBlueAccent,
+                          width: 18.w,
+                          height: 18.w),
                     ),
                   ),
-                  if (vibrationModel?.isPremium == true)
+                  if (!IAPConnection().isAvailable && index != 0 && index != 1)
                     Align(
                       alignment: Alignment.topRight,
                       child: Container(

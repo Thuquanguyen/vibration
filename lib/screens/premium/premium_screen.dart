@@ -13,6 +13,7 @@ import 'package:vibration_strong/routes/app_pages.dart';
 import 'package:vibration_strong/utils/app_scaffold.dart';
 import 'package:vibration_strong/utils/touchable.dart';
 
+import '../in_app_manage.dart';
 import 'premium_controller.dart';
 
 class Premiumscreen extends GetView<PremiumController> {
@@ -55,17 +56,18 @@ class Premiumscreen extends GetView<PremiumController> {
                       controller.restore();
                     },
                     child: Text(
-                      'Restore',
+                        (IAPConnection().isAvailable) ? 'Restore' : '',
                       style: TextStyles.defaultStyle
                           .setColor(Colors.white.withOpacity(1)),
                     ),
                   )),
                   Touchable(
                       onTap: () {
-                        if(Get.previousRoute == Routes.HOME || Get.previousRoute == Routes.SETTING){
+                        if (Get.previousRoute == Routes.HOME ||
+                            Get.previousRoute == Routes.SETTING) {
                           Get.back();
-                        }else{
-                         Get.offAndToNamed(Routes.HOME);
+                        } else {
+                          Get.offAndToNamed(Routes.HOME);
                         }
                       },
                       child: const Icon(
@@ -129,7 +131,7 @@ class Premiumscreen extends GetView<PremiumController> {
                                       .entries
                                       .map((e) => Touchable(
                                           onTap: () {
-                                            controller.buy(e.key);
+                                            controller.onChangeSelected(e.key);
                                           },
                                           child: _itemPackage(e.value)))
                                       .toList()
@@ -152,7 +154,7 @@ class Premiumscreen extends GetView<PremiumController> {
                                 const Spacer(),
                                 Touchable(
                                     onTap: () {
-                                      controller.buy(1);
+                                      controller.buy();
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -171,12 +173,15 @@ class Premiumscreen extends GetView<PremiumController> {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 15.h),
                                       child: Center(
-                                        child: Text(
-                                          'Try Free and Subscribe',
-                                          style: TextStyles.body2.bold
-                                              .setTextSize(16.sp)
-                                              .setColor(Colors.white),
-                                        ),
+                                        child: Obx(() => Text(
+                                              controller.indexSelected.value ==
+                                                      1
+                                                  ? 'Get Promotion and Subscribe'
+                                                  : 'Subscribe',
+                                              style: TextStyles.body2.bold
+                                                  .setTextSize(16.sp)
+                                                  .setColor(Colors.white),
+                                            )),
                                       ),
                                     )),
                                 SizedBox(
@@ -284,7 +289,7 @@ extension on Premiumscreen {
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(18.r),
+          borderRadius: BorderRadius.circular(10.r),
           border: Border.all(
               color: packageModel.isSelected == true
                   ? Colors.red.withOpacity(0.8)
