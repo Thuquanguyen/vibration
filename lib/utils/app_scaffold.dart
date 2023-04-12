@@ -103,15 +103,15 @@ class AppScaffold extends StatelessWidget {
                               if (hideBackButton != true)
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Container(
-                                    height: double.infinity,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 24),
-                                    child: Touchable(
-                                      onTap: () {
-                                        Logger.debug('AppScaffold back click');
-                                        _willPopCallback(context);
-                                      },
+                                  child: Touchable(
+                                    onTap: (){
+                                      Logger.debug('AppScaffold back click');
+                                      _willPopCallback(context);
+                                    },
+                                    child: Container(
+                                      height: double.infinity,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24),
                                       child: leading ??
                                           ImageHelper.loadFromAsset(
                                             AppAssets.icBack,

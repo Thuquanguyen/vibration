@@ -31,7 +31,6 @@ class ItemVibration extends StatelessWidget {
           Vibration.cancel();
           vibrationModel?.onTap?.call();
         }
-        vibrationModel?.onTap?.call();
       },
       child: Container(
         decoration: const BoxDecoration(

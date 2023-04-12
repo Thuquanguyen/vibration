@@ -39,18 +39,18 @@ void main() {
           return WillPopScope(
             onWillPop: () async => false,
             child: GetMaterialApp(
-              title: "Vibration",
-              debugShowCheckedModeBanner: false,
-              initialRoute: AppPages.INITIAL,
-              initialBinding: RootBinding(),
-              getPages: AppPages.routes,
-              locale: const Locale('en'),
-              theme: AppThemes().general(),
-                builder: (context,child){
-                  EasyLoading.init();
-                  return MediaQuery(data: MediaQuery.of(context).copyWith(textScaleFactor: 1), child: child!);
-                }
-            ),
+                title: "Vibration",
+                debugShowCheckedModeBanner: false,
+                initialRoute: AppPages.INITIAL,
+                initialBinding: RootBinding(),
+                getPages: AppPages.routes,
+                locale: const Locale('en'),
+                theme: AppThemes().general(),
+                builder: EasyLoading.init(
+                    builder: (context, child) => MediaQuery(
+                        data:
+                            MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                        child: child!))),
           );
         },
       ),
