@@ -68,7 +68,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.NOT_VIBRATION,
-      page: () => const NotVibrationscreen(),
+      page: () => const NotVibrationScreen(),
       binding: NotVibrationBinding(),
     ),
   ];

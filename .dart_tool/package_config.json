@@ -530,6 +530,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "google_mobile_ads",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_mobile_ads-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_sign_in",
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_sign_in-6.0.2",
       "packageUri": "lib/",
@@ -1154,6 +1160,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "visibility_detector",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/visibility_detector-0.3.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "watcher",
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/watcher-1.0.2",
       "packageUri": "lib/",
@@ -1164,6 +1176,30 @@
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/web_socket_channel-2.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "webview_flutter",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/webview_flutter-4.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "webview_flutter_android",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/webview_flutter_android-3.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "webview_flutter_platform_interface",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "webview_flutter_wkwebview",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.4.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "win32",
@@ -1196,7 +1232,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-08T10:28:02.197793Z",
+  "generated": "2023-05-16T05:42:11.700718Z",
   "generator": "pub",
-  "generatorVersion": "2.19.5"
+  "generatorVersion": "2.19.6"
 }

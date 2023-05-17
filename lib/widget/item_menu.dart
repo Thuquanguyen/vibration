@@ -4,17 +4,25 @@ import 'package:vibration_strong/core/assets/app_assets.dart';
 import 'package:vibration_strong/core/common/imagehelper.dart';
 import 'package:vibration_strong/core/model/vibration_model.dart';
 import 'package:vibration_strong/core/theme/textstyles.dart';
+import 'package:vibration_strong/screens/setting/setting_controller.dart';
 import 'package:vibration_strong/utils/touchable.dart';
 
+import '../screens/in_app_manage.dart';
+
 class ItemMenu extends StatelessWidget {
-  ItemMenu({Key? key, this.vibrationModel}) : super(key: key);
+  ItemMenu({Key? key, this.vibrationModel,this.settingController}) : super(key: key);
   VibrationModel? vibrationModel;
+  SettingController? settingController;
 
   @override
   Widget build(BuildContext context) {
     return Touchable(
       onTap: () {
-        vibrationModel?.onTap?.call();
+        if (vibrationModel?.title == 'Not Vibrating?' && !IAPConnection().isAvailable) {
+          settingController?.handleReward();
+        } else {
+          vibrationModel?.onTap?.call();
+        }
       },
       child: Container(
         decoration: BoxDecoration(

@@ -2,6 +2,7 @@
     package="com.vibration.massage">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <queries>
@@ -43,6 +44,10 @@
        <meta-data
            android:name="com.google.android.gms.wallet.api.enabled"
            android:value="true" />
+
+       <meta-data
+           android:name="com.google.android.gms.ads.APPLICATION_ID"
+           android:value="ca-app-pub-8786339512646303~3641072311"/>
 
        <meta-data
            android:name="assets.audio.player.notification.icon"

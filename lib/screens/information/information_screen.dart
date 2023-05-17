@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:vibration_strong/core/assets/app_assets.dart';
 import 'package:vibration_strong/core/common/imagehelper.dart';
 import 'package:vibration_strong/core/theme/textstyles.dart';
 import 'package:vibration_strong/utils/app_scaffold.dart';
 
+import '../in_app_manage.dart';
 import 'information_controller.dart';
 
 class InformationScreen extends GetView<InformationController> {
@@ -38,7 +40,7 @@ class InformationScreen extends GetView<InformationController> {
             const SizedBox(
               height: 10,
             ),
-            Flexible(
+            Expanded(
                 child: Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: const Text('''Vibrate massager simulated for you!
@@ -54,6 +56,19 @@ Note: This application is like a joke on the phone, it is only complementary sol
 
 are, as well as the battery life of the device.'''),
             )),
+            if (!IAPConnection().isAvailable)
+              Obx(() => Visibility(
+                visible: controller.isLoadAds.value,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                    width: controller.bannerAd.value.size.width.toDouble(),
+                    height:
+                    controller.bannerAd.value.size.height.toDouble(),
+                    child: AdWidget(ad: controller.bannerAd.value),
+                  ),
+                ),
+              )),
           ],
         ),
       ),

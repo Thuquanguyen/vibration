@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:vibration_strong/core/theme/textstyles.dart';
 import 'package:vibration_strong/utils/app_scaffold.dart';
 import 'package:vibration_strong/widget/item_menu.dart';
@@ -21,8 +22,7 @@ class SettingScreen extends GetView<SettingController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (!IAPConnection().isAvailable)
-            const PremiumWidget(),
+            if (!IAPConnection().isAvailable) const PremiumWidget(),
             SizedBox(
               height: 30.h,
             ),
@@ -35,7 +35,22 @@ class SettingScreen extends GetView<SettingController> {
             ),
             ...controller.vibrations.map((e) => ItemMenu(
                   vibrationModel: e,
-                ))
+              settingController: controller,
+                )),
+            const Spacer(),
+            if (!IAPConnection().isAvailable)
+              Obx(() => Visibility(
+                    visible: controller.isLoadAds.value,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: SizedBox(
+                        width: controller.bannerAd.value.size.width.toDouble(),
+                        height:
+                            controller.bannerAd.value.size.height.toDouble(),
+                        child: AdWidget(ad: controller.bannerAd.value),
+                      ),
+                    ),
+                  )),
           ],
         ),
       ),

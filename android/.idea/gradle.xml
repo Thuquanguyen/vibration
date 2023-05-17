@@ -24,6 +24,7 @@
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.9/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_statusbarcolor_ns-0.4.0/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/fluttertoast-8.2.1/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_mobile_ads-3.0.0/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.8/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_android-0.8.6+6/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_android-0.2.4+3/android" />
@@ -36,6 +37,7 @@
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sqflite-2.2.6/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.26/android" />
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vibration-1.7.6/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.7.0/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>

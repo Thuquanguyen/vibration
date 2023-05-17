@@ -15,12 +15,14 @@ import 'package:vibration_strong/utils/app_loading.dart';
 import 'binding/root_binding.dart';
 import 'core/common/app_func.dart';
 import 'core/service/notification_service.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {
   void initApp() async {
     WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-    // await Firebase.initializeApp();
+    await Firebase.initializeApp();
+    await MobileAds.instance.initialize();
     FlutterNativeSplash.remove();
     NotificationService().initializePlatformNotifications();
     AppFunc.initLoadingStyle();

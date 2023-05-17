@@ -7,6 +7,7 @@ import 'package:vibration_strong/core/theme/textstyles.dart';
 import 'package:vibration_strong/screens/home/home_controller.dart';
 import 'package:vibration_strong/utils/touchable.dart';
 
+import '../core/common/app_func.dart';
 import '../core/common/imagehelper.dart';
 import '../core/model/vibration_model.dart';
 import '../routes/app_pages.dart';
@@ -23,13 +24,30 @@ class ItemVibration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Touchable(
       onTap: () {
-        if (!IAPConnection().isAvailable &&  index != 0 && index != 1) {
+        if (!IAPConnection().isAvailable && vibrationModel?.isPremium == true) {
           Vibration.cancel();
-          Get.toNamed(Routes.PREMIUM);
+          AppFunc.showAlertDialogConfirm(context,
+              message: 'Would you like to try this vibration once?',
+              callBack: () {
+                Get.toNamed(Routes.PREMIUM);
+              },
+              cancelCallback: () {
+                controller?.rewardedAd?.show(onUserEarnedReward: (a,b){
+                  vibrationModel?.onTap?.call();
+                });
+              });
         } else {
-          controller?.changeSelected(index ?? 0);
-          Vibration.cancel();
-          vibrationModel?.onTap?.call();
+          if ((index ?? 0) > 4 && (index ?? 0) < 10 && !IAPConnection().isAvailable){
+            controller?.rewardedAd?.show(onUserEarnedReward: (aa, reward) {
+              controller?.changeSelected(index ?? 0);
+              Vibration.cancel();
+              vibrationModel?.onTap?.call();
+            });
+          } else {
+            controller?.changeSelected(index ?? 0);
+            Vibration.cancel();
+            vibrationModel?.onTap?.call();
+          }
         }
       },
       child: Container(
@@ -64,7 +82,8 @@ class ItemVibration extends StatelessWidget {
                           height: 18.w),
                     ),
                   ),
-                  if (!IAPConnection().isAvailable && index != 0 && index != 1)
+                  if (!IAPConnection().isAvailable &&
+                      vibrationModel?.isPremium == true)
                     Align(
                       alignment: Alignment.topRight,
                       child: Container(

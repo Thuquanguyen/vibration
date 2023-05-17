@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:vibration/vibration.dart';
 import 'package:vibration_strong/core/assets/app_assets.dart';
 import 'package:vibration_strong/core/common/app_func.dart';
@@ -19,6 +20,7 @@ import '../../core/common/imagehelper.dart';
 import '../../widget/item_vibration.dart';
 import '../in_app_manage.dart';
 import 'home_controller.dart';
+import '../../utils/scrolling_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
@@ -77,99 +79,21 @@ class Homescreen extends GetView<HomeController> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AudioWave(
-                      height: 32,
-                      width: 88,
-                      spacing: 2.5,
-                      bars: [
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.4, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.3, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.2, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.3, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.9, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 1, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.24, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.54, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.89, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.4, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.36, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.17, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.5, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.33, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 1, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.4, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.3, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.2, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.3, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.6, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.9, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 1, color: Colors.amberAccent),
-                        AudioWaveBar(
-                            heightFactor: 0.24, color: Colors.amberAccent)
-                      ],
+                SizedBox(height: 10.h,),
+                if (!IAPConnection().isAvailable)
+                  Obx(() => Visibility(
+                    visible: controller.isLoadAds.value,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: SizedBox(
+                        width:
+                        controller.bannerAd.value.size.width.toDouble(),
+                        height: controller.bannerAd.value.size.height
+                            .toDouble(),
+                        child: AdWidget(ad: controller.bannerAd.value),
+                      ),
                     ),
-                    SizedBox(
-                      width: 15.w,
-                    ),
-                    Touchable(
-                        onTap: () {
-                          _showBottomSheet(context);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(5.w),
-                          decoration: const BoxDecoration(
-                              color: Colors.amberAccent,
-                              shape: BoxShape.circle),
-                          child: Icon(
-                            Icons.music_note_outlined,
-                            size: 20.w,
-                            color: Colors.white,
-                          ),
-                        ))
-                  ],
-                ),
+                  )),
                 SizedBox(
                   height: 20.h,
                 ),
@@ -263,31 +187,40 @@ class Homescreen extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                Touchable(
-                    onTap: () {
-                      Vibration.cancel();
-                    },
-                    child: Container(
-                      margin:
-                          EdgeInsets.only(top: 20.h, left: 50.w, right: 50.w),
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: const Color(0xffA22447).withOpacity(.25),
-                                offset: const Offset(0, 0),
-                                blurRadius: 20,
-                                spreadRadius: 3)
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.r)),
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child: Center(
-                        child: Text(
-                          "STOP VIBRATION",
-                          style: TextStyles.body1,
-                        ),
-                      ),
-                    ))
+                SizedBox(height: 10.h,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 150,
+                      height: 20.h,
+                      child: Obx(() => ScrollingText(
+                        text: controller.song.value,
+                        textStyle: TextStyles.body1.setColor(Colors.white),
+                      )),
+                    ),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    Touchable(
+                        onTap: () {
+                          controller.rewardedAd?.show(onUserEarnedReward: (a,b){
+                            _showBottomSheet(context);
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5.w),
+                          decoration: const BoxDecoration(
+                              color: Colors.amberAccent,
+                              shape: BoxShape.circle),
+                          child: Icon(
+                            Icons.music_video,
+                            size: 20.w,
+                            color: Colors.white,
+                          ),
+                        ))
+                  ],
+                ),
               ],
             ),
           ],
@@ -329,19 +262,14 @@ class Homescreen extends GetView<HomeController> {
               ),
               Touchable(
                   onTap: () async {
-                    // if (!IAPConnection().isAvailable) {
-                    //   Get.toNamed(Routes.PREMIUM);
-                    // } else {
-                    //   AppFunc.showAlertDialog(context,
-                    //       title: 'Coming soon!',
-                    //       message:
-                    //           'The feature to initiate a strong vibration mode just for you.\n\nPlease update the app regularly to keep an eye on this upcoming feature!');
-                    // }
-                    AppFunc.showAlertDialog(context,
-                        title: 'Coming soon!',
-                        message:
-                        'The feature to initiate a strong vibration mode just for you.\n\nPlease update the app regularly to keep an eye on this upcoming feature!');
-
+                    Vibration.cancel();
+                    if (controller.interstitialAd != null && !IAPConnection().isAvailable) {
+                      controller.interstitialAd!.show();
+                    }
+                    // AppFunc.showAlertDialog(context,
+                    //     title: 'Coming soon!',
+                    //     message:
+                    //         'The feature to initiate a strong vibration mode just for you.\n\nPlease update the app regularly to keep an eye on this upcoming feature!');
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -353,23 +281,66 @@ class Homescreen extends GetView<HomeController> {
                       ),
                     ),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                    EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
                     child: Row(
                       children: [
                         Text(
-                          "Create",
-                          style: TextStyles.defaultStyle,
+                          "Stop Vibration",
+                          style: TextStyles.defaultStyle.setTextSize(12.sp),
                         ),
-                        if (!IAPConnection().isAvailable)
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                        if (!IAPConnection().isAvailable)
-                          ImageHelper.loadFromAsset(AppAssets.icPremium,
-                              width: 12.w, height: 12.w)
+                        // if (!IAPConnection().isAvailable)
+                        //   SizedBox(
+                        //     width: 5.w,
+                        //   ),
+                        // if (!IAPConnection().isAvailable)
+                        //   ImageHelper.loadFromAsset(AppAssets.icPremium,
+                        //       width: 12.w, height: 12.w)
                       ],
                     ),
                   ))
+              // Touchable(
+              //     onTap: () async {
+              //       // if (!IAPConnection().isAvailable) {
+              //       //   Get.toNamed(Routes.PREMIUM);
+              //       // } else {
+              //       //   AppFunc.showAlertDialog(context,
+              //       //       title: 'Coming soon!',
+              //       //       message:
+              //       //           'The feature to initiate a strong vibration mode just for you.\n\nPlease update the app regularly to keep an eye on this upcoming feature!');
+              //       // }
+              //       AppFunc.showAlertDialog(context,
+              //           title: 'Coming soon!',
+              //           message:
+              //           'The feature to initiate a strong vibration mode just for you.\n\nPlease update the app regularly to keep an eye on this upcoming feature!');
+              //
+              //     },
+              //     child: Container(
+              //       decoration: BoxDecoration(
+              //         color: Colors.cyanAccent.withOpacity(0.3),
+              //         borderRadius: BorderRadius.circular(8),
+              //         border: Border.all(
+              //           color: Colors.lightBlueAccent.withOpacity(0.5),
+              //           width: 0.5,
+              //         ),
+              //       ),
+              //       padding:
+              //           EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+              //       child: Row(
+              //         children: [
+              //           Text(
+              //             "Create",
+              //             style: TextStyles.defaultStyle,
+              //           ),
+              //           if (!IAPConnection().isAvailable)
+              //             SizedBox(
+              //               width: 5.w,
+              //             ),
+              //           if (!IAPConnection().isAvailable)
+              //             ImageHelper.loadFromAsset(AppAssets.icPremium,
+              //                 width: 12.w, height: 12.w)
+              //         ],
+              //       ),
+              //     ))
             ],
           ),
         ),
