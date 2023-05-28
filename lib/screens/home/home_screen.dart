@@ -21,7 +21,6 @@ import '../../widget/item_vibration.dart';
 import '../in_app_manage.dart';
 import 'home_controller.dart';
 import '../../utils/scrolling_text.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
 class Homescreen extends GetView<HomeController> {
@@ -143,8 +142,6 @@ class Homescreen extends GetView<HomeController> {
                                             height: 12.w),
                                       Text("High",
                                           style: TextStyles.label2.copyWith(
-                                              fontFamily:
-                                                  GoogleFonts.aleo().fontFamily,
                                               color:
                                                   controller.progress.value >=
                                                           0.8
@@ -159,8 +156,6 @@ class Homescreen extends GetView<HomeController> {
                                       Text(
                                         "Medium",
                                         style: TextStyles.label2.copyWith(
-                                            fontFamily:
-                                                GoogleFonts.aleo().fontFamily,
                                             color:
                                                 controller.progress.value >= 0.5
                                                     ? Colors.white
@@ -170,8 +165,6 @@ class Homescreen extends GetView<HomeController> {
                                       Text(
                                         "Low",
                                         style: TextStyles.label2.copyWith(
-                                            fontFamily:
-                                                GoogleFonts.aleo().fontFamily,
                                             color: controller.progress.value >=
                                                     0.08
                                                 ? Colors.white

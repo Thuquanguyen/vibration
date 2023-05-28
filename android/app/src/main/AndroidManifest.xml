@@ -47,7 +47,9 @@
 
        <meta-data
            android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="ca-app-pub-8786339512646303~3641072311"/>
+           android:value="ca-app-pub-1009313376075664~2295529573"/>
+<!--           android:value="ca-app-pub-3940256099942544~3347511713" />-->
+<!--           -->
 
        <meta-data
            android:name="assets.audio.player.notification.icon"

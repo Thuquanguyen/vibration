@@ -39,7 +39,7 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/async-2.10.0",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -129,7 +129,7 @@
     },
     {
       "name": "characters",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/characters-1.2.1",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/characters-1.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -189,9 +189,9 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/collection-1.17.0",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/collection-1.17.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "convert",
@@ -335,7 +335,7 @@
       "name": "flutter",
       "rootUri": "file:///Users/macbook/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_blurhash",
@@ -479,13 +479,13 @@
       "name": "flutter_test",
       "rootUri": "file:///Users/macbook/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///Users/macbook/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "fluttertoast",
@@ -516,12 +516,6 @@
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/glob-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
-    },
-    {
-      "name": "google_fonts",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_fonts-4.0.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "google_identity_services_web",
@@ -669,9 +663,9 @@
     },
     {
       "name": "js",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/js-0.6.5",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.19"
     },
     {
       "name": "json_annotation",
@@ -711,7 +705,7 @@
     },
     {
       "name": "matcher",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/matcher-0.12.13",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/matcher-0.12.15",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -723,7 +717,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/meta-1.8.0",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/meta-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -753,7 +747,7 @@
     },
     {
       "name": "path",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/path-1.8.2",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/path-1.8.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -1001,7 +995,7 @@
       "name": "sky_engine",
       "rootUri": "file:///Users/macbook/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "source_span",
@@ -1059,7 +1053,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/test_api-0.4.16",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/test_api-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -1232,7 +1226,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-16T05:42:11.700718Z",
+  "generated": "2023-05-25T06:34:16.712984Z",
   "generator": "pub",
-  "generatorVersion": "2.19.6"
+  "generatorVersion": "3.0.1"
 }

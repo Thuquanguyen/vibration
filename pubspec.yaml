@@ -55,7 +55,7 @@ dependencies:
   vibration: ^1.7.6
   shimmer: ^2.0.0
   rive: ^0.10.3
-  google_fonts: ^4.0.3
+#  google_fonts: ^4.0.3
   image_picker: ^0.8.0+1
   filling_slider: ^0.0.3
   expandable_bottom_sheet: ^1.1.1+1
