@@ -518,46 +518,10 @@
       "languageVersion": "2.15"
     },
     {
-      "name": "google_identity_services_web",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_identity_services_web-0.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "google_mobile_ads",
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_mobile_ads-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "google_sign_in",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_sign_in-6.0.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
-      "name": "google_sign_in_android",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.8",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "google_sign_in_ios",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.6.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "google_sign_in_platform_interface",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.3.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "google_sign_in_web",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/google_sign_in_web-0.11.0+2",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
     },
     {
       "name": "graphs",
@@ -890,12 +854,6 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "quiver",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/quiver-3.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "recase",
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/recase-4.1.0",
       "packageUri": "lib/",
@@ -1226,7 +1184,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-25T06:34:16.712984Z",
+  "generated": "2023-07-27T07:36:50.077189Z",
   "generator": "pub",
-  "generatorVersion": "3.0.1"
+  "generatorVersion": "3.0.5"
 }

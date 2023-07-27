@@ -10,6 +10,8 @@ import 'package:vibration_strong/core/service/notification_service.dart';
 import 'package:vibration_strong/core/theme/dimens.dart';
 
 import '../../ad_manager.dart';
+import '../../ads/app_lifecircle_factory.dart';
+import '../../ads/open_app_ads_manage.dart';
 import '../../core/model/vibration_model.dart';
 import '../audio_player.dart';
 import '../in_app_manage.dart';
@@ -553,7 +555,9 @@ class HomeController extends BaseController {
     loadBannerAds();
     loadInterstitialAd();
     loadRewardedAd();
-    print('IAPConnection().isAvailable = ${IAPConnection().isAvailable}');
+    AppOpenAdManager appOpenAdManager = AppOpenAdManager()..loadAd();
+    AppLifecycleReactor(appOpenAdManager: appOpenAdManager)
+        .listenToAppStateChanges();
     super.onInit();
   }
 
