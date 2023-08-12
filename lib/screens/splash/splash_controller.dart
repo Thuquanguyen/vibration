@@ -35,7 +35,7 @@ class SplashController extends BaseController {
       checkDirect();
       // AppFunc.setTimeout(() {
       //   IAPConnection().updateAvailable();
-      //   Get.offAndToNamed(Routes.HOME);
+      //   Get.offAndToNamed(Routes.MAIN);
       // }, 3000);
       count.value++;
     }
@@ -48,7 +48,7 @@ class SplashController extends BaseController {
     if (data == null || data == 'null') {
       AppFunc.setTimeout(() {
         IAPConnection().isAvailable = false;
-        Get.offAndToNamed(!isWelcome ? Routes.WELCOME : Routes.HOME);
+        Get.offAndToNamed(!isWelcome ? Routes.WELCOME : Routes.MAIN);
       }, 3000);
     } else {
       DateTime dateTime = dateFormat.parse(data ?? '');
@@ -61,7 +61,7 @@ class SplashController extends BaseController {
       } else {
         AppFunc.setTimeout(() {
           IAPConnection().updateAvailable();
-          Get.offAndToNamed(Routes.HOME);
+          Get.offAndToNamed(Routes.MAIN);
         }, 3000);
       }
     }

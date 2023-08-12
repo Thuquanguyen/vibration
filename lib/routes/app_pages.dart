@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:vibration_strong/screens/home/home_binding.dart';
 import 'package:vibration_strong/screens/information/information_binding.dart';
+import 'package:vibration_strong/screens/main/main_binding.dart';
+import 'package:vibration_strong/screens/main/main_screen.dart';
 import 'package:vibration_strong/screens/not_vibration/not_vibration_binding.dart';
 import 'package:vibration_strong/screens/premium/premium_binding.dart';
 import 'package:vibration_strong/screens/premium/premium_screen.dart';
@@ -13,8 +15,14 @@ import 'package:vibration_strong/screens/welcome/welcome_binding.dart';
 import 'package:vibration_strong/screens/welcome/welcome_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/information/information_screen.dart';
+import '../screens/meditate/meditate_binding.dart';
+import '../screens/meditate/meditate_screen.dart';
+import '../screens/music/music_binding.dart';
+import '../screens/music/music_screen.dart';
 import '../screens/not_vibration/not_vibration_screen.dart';
 import '../screens/privacy_policy/privacy_policy_binding.dart';
+import '../screens/sleep/sleep_binding.dart';
+import '../screens/sleep/sleep_screen.dart';
 import '../screens/splash/splash_binding.dart';
 import '../screens/splash/splash_screen.dart';
 
@@ -30,6 +38,26 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashScreen(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.MEDITATE,
+      page: () => MeditateScreen(),
+      binding: MeditateBinding(),
+    ),
+    GetPage(
+      name: _Paths.SLEEP,
+      page: () => SleepScreen(),
+      binding: SleepBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAIN,
+      page: () => const MainScreen(),
+      binding: MainBinding(),
+    ),
+    GetPage(
+      name: _Paths.MUSIC,
+      page: () => MusicScreen(),
+      binding: MusicBinding(),
     ),
     GetPage(
       name: _Paths.HOME,

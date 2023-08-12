@@ -67,10 +67,10 @@ class SettingController extends BaseController {
   }
 
   handleReward(){
-    rewardedAd?.show(onUserEarnedReward: (a,b){
-      Get.toNamed(Routes.NOT_VIBRATION);
-    });
+    interstitialAd?.show();
+    Get.toNamed(Routes.NOT_VIBRATION);
   }
+
   void loadBannerAds(){
     BannerAd(
       adUnitId: AdManager.bannerAdUnitId,

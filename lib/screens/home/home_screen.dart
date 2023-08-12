@@ -51,48 +51,23 @@ class Homescreen extends GetView<HomeController> {
                 fit: BoxFit.cover)),
             Column(
               children: [
-                SizedBox(
-                  height: 20.h,
+                const SizedBox(
+                  height: kToolbarHeight - 20,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 20.w, top: 20.h, right: 20.w),
-                  child: Row(
-                    children: [
-                      Touchable(
-                          onTap: () {
-                            Get.toNamed(Routes.INFORMATION);
-                          },
-                          child: const Icon(
-                            Icons.info_outline,
-                            color: Colors.amberAccent,
-                          )),
-                      const Spacer(),
-                      Touchable(
-                          onTap: () {
-                            Get.toNamed(Routes.SETTING);
-                          },
-                          child: const Icon(
-                            Icons.settings,
-                            color: Colors.amberAccent,
-                          ))
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10.h,),
                 if (!IAPConnection().isAvailable)
                   Obx(() => Visibility(
-                    visible: controller.isLoadAds.value,
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: SizedBox(
-                        width:
-                        controller.bannerAd.value.size.width.toDouble(),
-                        height: controller.bannerAd.value.size.height
-                            .toDouble(),
-                        child: AdWidget(ad: controller.bannerAd.value),
-                      ),
-                    ),
-                  )),
+                        visible: controller.isLoadAds.value,
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: SizedBox(
+                            width:
+                                controller.bannerAd.value.size.width.toDouble(),
+                            height: controller.bannerAd.value.size.height
+                                .toDouble(),
+                            child: AdWidget(ad: controller.bannerAd.value),
+                          ),
+                        ),
+                      )),
                 SizedBox(
                   height: 20.h,
                 ),
@@ -180,7 +155,9 @@ class Homescreen extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -188,30 +165,13 @@ class Homescreen extends GetView<HomeController> {
                       width: 150,
                       height: 20.h,
                       child: Obx(() => ScrollingText(
-                        text: controller.song.value,
-                        textStyle: TextStyles.body1.setColor(Colors.white),
-                      )),
+                            text: controller.song.value,
+                            textStyle: TextStyles.body1.setColor(Colors.white),
+                          )),
                     ),
                     SizedBox(
                       width: 15.w,
                     ),
-                    Touchable(
-                        onTap: () {
-                          controller.rewardedAd?.show(onUserEarnedReward: (a,b){
-                            _showBottomSheet(context);
-                          });
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(5.w),
-                          decoration: const BoxDecoration(
-                              color: Colors.amberAccent,
-                              shape: BoxShape.circle),
-                          child: Icon(
-                            Icons.music_video,
-                            size: 20.w,
-                            color: Colors.white,
-                          ),
-                        ))
                   ],
                 ),
               ],
@@ -256,7 +216,8 @@ class Homescreen extends GetView<HomeController> {
               Touchable(
                   onTap: () async {
                     Vibration.cancel();
-                    if (controller.interstitialAd != null && !IAPConnection().isAvailable) {
+                    if (controller.interstitialAd != null &&
+                        !IAPConnection().isAvailable) {
                       controller.interstitialAd!.show();
                     }
                     // AppFunc.showAlertDialog(context,
@@ -274,7 +235,7 @@ class Homescreen extends GetView<HomeController> {
                       ),
                     ),
                     padding:
-                    EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
                     child: Row(
                       children: [
                         Text(
@@ -355,68 +316,6 @@ class Homescreen extends GetView<HomeController> {
         ),
         enableToggle: false,
       ),
-    );
-  }
-}
-
-extension on Homescreen {
-  void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) {
-        return GestureDetector(
-          onTap: () {
-            // AudioPlayerVibration().url = '';
-            // AudioPlayerVibration().currentUrl = '';
-            Navigator.of(context).pop();
-          },
-          child: Container(
-            color: const Color.fromRGBO(0, 0, 0, 0.001),
-            child: GestureDetector(
-              onTap: () {},
-              child: DraggableScrollableSheet(
-                initialChildSize: 0.4,
-                minChildSize: 0.2,
-                maxChildSize: 0.75,
-                builder: (_, controller1) {
-                  return Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25.0),
-                        topRight: Radius.circular(25.0),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.remove,
-                          color: Colors.grey[600],
-                        ),
-                        Expanded(
-                          child: Obx(() => ListView.builder(
-                                controller: controller1,
-                                itemCount: controller.listMusics.length,
-                                itemBuilder: (_, index) {
-                                  return ItemMusic(
-                                    musicModel: controller.listMusics[index],
-                                    controller: controller,
-                                    index: index,
-                                  );
-                                },
-                              )),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }
