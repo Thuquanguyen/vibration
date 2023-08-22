@@ -1,38 +1,39 @@
 {
   "project_info": {
-    "project_number": "472879838728",
-    "project_id": "vibration-strong-vibrato-27981",
-    "storage_bucket": "vibration-strong-vibrato-27981.appspot.com"
+    "project_number": "162056625977",
+    "project_id": "vibration-strong-vibrato-20497",
+    "storage_bucket": "vibration-strong-vibrato-20497.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:472879838728:android:13b4fd962c310bf34cc3bd",
+        "mobilesdk_app_id": "1:162056625977:android:d76e609b5aa8d4fc9612e8",
         "android_client_info": {
           "package_name": "com.vibration.massage"
         }
       },
       "oauth_client": [
         {
-          "client_id": "472879838728-u7dhqhi7h4ufvogh2gnl335bmfguso40.apps.googleusercontent.com",
+          "client_id": "162056625977-hsgl4iijc40qo0nfqg4c8jkg0l231up1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQ-Bu9q4AN3ufgYaAuMJt-Zy_QUrrltWA"
+          "current_key": "AIzaSyCDsrkURmoWgkfsuMPOUzUU00AHACElVGk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "472879838728-u7dhqhi7h4ufvogh2gnl335bmfguso40.apps.googleusercontent.com",
+              "client_id": "162056625977-hsgl4iijc40qo0nfqg4c8jkg0l231up1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-2659523693826243~2299889619"
     }
   ],
   "configuration_version": "1"

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 class AdManager {
-
   static final AdManager _singleton = AdManager._internal();
 
   factory AdManager() {
@@ -12,7 +11,7 @@ class AdManager {
 
   static String get bannerAdUnitId {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-1244158433596230/1853011523';
+      return 'ca-app-pub-2659523693826243/6479626013';
     } else if (Platform.isIOS) {
       return 'ca-app-pub-3940256099942544/2934735716';
     } else {
@@ -22,7 +21,7 @@ class AdManager {
 
   static String get interstitialAdUnitId {
     if (Platform.isAndroid) {
-      return "ca-app-pub-1244158433596230/9899022505";
+      return "ca-app-pub-2659523693826243/6782060101";
     } else if (Platform.isIOS) {
       return "ca-app-pub-3940256099942544/4411468910";
     } else {
@@ -32,7 +31,7 @@ class AdManager {
 
   static String get rewardedAdUnitId {
     if (Platform.isAndroid) {
-      return "ca-app-pub-1244158433596230/2175874331";
+      return "ca-app-pub-2659523693826243/6890689556";
     } else if (Platform.isIOS) {
       return "ca-app-pub-8786339512646303/4817372869";
     } else {
@@ -42,7 +41,7 @@ class AdManager {
 
   static String get openAppAdUnitId {
     if (Platform.isAndroid) {
-      return "ca-app-pub-1244158433596230/7488481584";
+      return "ca-app-pub-2659523693826243/5169595533";
     } else if (Platform.isIOS) {
       return "ca-app-pub-3940256099942544/1712485313";
     } else {
@@ -79,13 +78,14 @@ class AdManager {
   //     throw new UnsupportedError("Unsupported platform");
   //   }
   // }
-  //   static String get openAppAdUnitId {
-  //     if (Platform.isAndroid) {
-  //       return "ca-app-pub-3940256099942544/3419835294";
-  //     } else if (Platform.isIOS) {
-  //       return "ca-app-pub-3940256099942544/1712485313";
-  //     } else {
-  //       throw new UnsupportedError("Unsupported platform");
-  //     }
+  //
+  // static String get openAppAdUnitId {
+  //   if (Platform.isAndroid) {
+  //     return "ca-app-pub-3940256099942544/3419835294";
+  //   } else if (Platform.isIOS) {
+  //     return "ca-app-pub-3940256099942544/1712485313";
+  //   } else {
+  //     throw new UnsupportedError("Unsupported platform");
   //   }
+  // }
 }

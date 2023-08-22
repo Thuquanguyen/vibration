@@ -24,29 +24,45 @@ class ItemMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Touchable(
-      onTap: () {
-        if (!IAPConnection().isAvailable && index != 0 && index != 1) {
-          AppFunc.showAlertDialogConfirm(context,
-              message:
-              'You need to be active or watch ads to listen to this song. Do you wanna hear?',
-              callBack: () {
+      onTap: () async {
+        if (!IAPConnection().isAvailable && musicModel?.isPremium == true) {
+          if (AudioPlayerVibration().currentUrl == musicModel?.url &&
+              AudioPlayerVibration().player.playing) {
+            AudioPlayerVibration().currentUrl = '';
+            AudioPlayerVibration().stopAudio();
+            controller?.changeSelectedMusic(index ?? 0);
+          } else {
+            if (IAPConnection().hasVibrator) {
+              AppFunc.showAlertDialogConfirm(context,
+                  message:
+                      'Do you need to unlock or see this ad to hear the music?',
+                  callBack: () {
                 Get.back();
-                // Navigator.pop(context);
                 Get.toNamed(Routes.PREMIUM);
               }, cancelCallback: () {
                 controller?.rewardedAd?.show(onUserEarnedReward: (a, b) {
                   controller?.changeSelectedMusic(index ?? 0);
                   musicModel?.onTab?.call();
-                  AudioPlayerVibration().currentUrl =
-                      musicModel?.url ?? "https://storage.googleapis.com/vibrate/Autumn%20In%20My%20Heart.mp3";
-                  AudioPlayerVibration().playAudio(title: musicModel?.title ?? '');
+                  AudioPlayerVibration().currentUrl = musicModel?.url ??
+                      "https://storage.googleapis.com/vibrate/Autumn%20In%20My%20Heart.mp3";
+                  AudioPlayerVibration()
+                      .playAudio(title: musicModel?.title ?? '');
                 });
               });
+            } else {
+              AppFunc.showAlertDialogConfirm(context,
+                  message: 'Need to unlock to listen to this song?',
+                  callBack: () {
+                Get.back();
+                Get.toNamed(Routes.PREMIUM);
+              });
+            }
+          }
         } else {
           controller?.changeSelectedMusic(index ?? 0);
           musicModel?.onTab?.call();
-          AudioPlayerVibration().currentUrl =
-              musicModel?.url ?? "https://storage.googleapis.com/vibrate/Autumn%20In%20My%20Heart.mp3";
+          AudioPlayerVibration().currentUrl = musicModel?.url ??
+              "https://storage.googleapis.com/vibrate/Autumn%20In%20My%20Heart.mp3";
           AudioPlayerVibration().playAudio(title: musicModel?.title ?? '');
         }
       },
@@ -88,12 +104,12 @@ class ItemMusic extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 2)),
-                  padding: EdgeInsets.all(5.w),
+                  padding: EdgeInsets.all(8.w),
                   child: Center(
                     child: Icon(
                       (musicModel?.isSelected ?? false)
-                          ? Icons.pause_circle
-                          : Icons.play_circle,
+                          ? Icons.pause
+                          : Icons.my_library_music_outlined,
                       size: 20,
                       color: Colors.white,
                     ),
@@ -102,17 +118,18 @@ class ItemMusic extends StatelessWidget {
               ),
               Align(
                   alignment: Alignment.topRight,
-                  child: (!IAPConnection().isAvailable && musicModel?.isPremium == true)
+                  child: (!IAPConnection().isAvailable &&
+                          musicModel?.isPremium == true)
                       ? Container(
-                    padding: const EdgeInsets.only(
-                        left: 6, top: 2, right: 2, bottom: 6),
-                    decoration: const BoxDecoration(
-                        color: Colors.pinkAccent,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20))),
-                    child: ImageHelper.loadFromAsset(AppAssets.icPremium,
-                        width: 10, height: 10),
-                  )
+                          padding: const EdgeInsets.only(
+                              left: 6, top: 2, right: 2, bottom: 6),
+                          decoration: const BoxDecoration(
+                              color: Colors.pinkAccent,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20))),
+                          child: ImageHelper.loadFromAsset(AppAssets.icPremium,
+                              width: 10, height: 10),
+                        )
                       : const SizedBox())
             ],
           ),

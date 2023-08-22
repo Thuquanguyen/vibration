@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vibration/vibration.dart';
 import 'package:vibration_strong/screens/home/home_controller.dart';
 import 'package:vibration_strong/screens/home/home_screen.dart';
 import 'package:vibration_strong/screens/setting/setting_screen.dart';
 import '../../core/base/base_controller.dart';
+import '../in_app_manage.dart';
 import '../meditate/meditate_screen.dart';
 import '../music/music_screen.dart';
 import '../sleep/sleep_screen.dart';
@@ -64,5 +66,19 @@ class MainController extends BaseController {
 
   void popToRoot() {
     (currentScreenModel.screen as KeepAlivePage).popToRoot();
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    checkVibration();
+    super.onInit();
+  }
+
+  void checkVibration() async {
+    bool hasVibrator = await Vibration.hasVibrator() ?? false;
+    print("hasVibrator = ${hasVibrator}");
+    IAPConnection().hasVibrator = hasVibrator;
+    print("IAPConnection().hasVibrator = ${IAPConnection().hasVibrator}");
   }
 }

@@ -13,6 +13,7 @@ import 'package:vibration_strong/routes/app_pages.dart';
 import 'package:vibration_strong/utils/app_scaffold.dart';
 import 'package:vibration_strong/utils/touchable.dart';
 
+import '../../utils/app_utils.dart';
 import '../in_app_manage.dart';
 import 'premium_controller.dart';
 
@@ -63,11 +64,10 @@ class Premiumscreen extends GetView<PremiumController> {
                   )),
                   Touchable(
                       onTap: () {
-                        if (Get.previousRoute == Routes.HOME ||
-                            Get.previousRoute == Routes.SETTING) {
-                          Get.back();
+                        if (Get.currentRoute == Routes.MAIN) {
+                          popScreen();
                         } else {
-                          Get.offAndToNamed(Routes.HOME);
+                          Get.offAndToNamed(Routes.MAIN);
                         }
                       },
                       child: const Icon(
@@ -80,7 +80,7 @@ class Premiumscreen extends GetView<PremiumController> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 120.h),
+            margin: EdgeInsets.only(top: 80.h),
             child: Stack(
               children: [
                 Column(

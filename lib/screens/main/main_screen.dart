@@ -15,8 +15,8 @@ class MainScreen extends GetView<MainController> {
       child: Obx(() => Scaffold(
           drawerEdgeDragWidth: 0,
           body: IndexedStack(
-            children: controller.menuPages,
             index: controller.navMenuIndex(),
+            children: controller.menuPages,
           ),
           bottomNavigationBar: Container(
               decoration: BoxDecoration(

@@ -56,6 +56,12 @@ Note: This application is like a joke on the phone, it is only complementary sol
 
 are, as well as the battery life of the device.'''),
             )),
+            Container(
+              height: 1,
+              width: Get.width,
+              margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              color: Colors.grey.withOpacity(0.5),
+            ),
             if (!IAPConnection().isAvailable)
               Obx(() => Visibility(
                 visible: controller.isLoadAds.value,
@@ -69,6 +75,9 @@ are, as well as the battery life of the device.'''),
                   ),
                 ),
               )),
+            const SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),
