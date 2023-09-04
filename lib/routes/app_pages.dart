@@ -15,6 +15,8 @@ import 'package:vibration_strong/screens/welcome/welcome_binding.dart';
 import 'package:vibration_strong/screens/welcome/welcome_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/information/information_screen.dart';
+import '../screens/language/language_binding.dart';
+import '../screens/language/language_screen.dart';
 import '../screens/meditate/meditate_binding.dart';
 import '../screens/meditate/meditate_screen.dart';
 import '../screens/music/music_binding.dart';
@@ -36,7 +38,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.SPLASH,
-      page: () => const SplashScreen(),
+      page: () => SplashScreen(),
       binding: SplashBinding(),
     ),
     GetPage(
@@ -61,7 +63,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME,
-      page: () => const Homescreen(),
+      page: () => HomeScreen(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -76,12 +78,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.WELCOME,
-      page: () => Welcomescreen(),
+      page: () => WelcomeScreen(),
       binding: WelcomeBinding(),
     ),
     GetPage(
       name: _Paths.PREMIUM,
-      page: () => const Premiumscreen(),
+      page: () => PremiumScreen(),
       binding: PremiumBinding(),
     ),
     GetPage(
@@ -98,6 +100,11 @@ class AppPages {
       name: _Paths.NOT_VIBRATION,
       page: () => const NotVibrationScreen(),
       binding: NotVibrationBinding(),
+    ),
+    GetPage(
+      name: _Paths.LANGUAGE,
+      page: () => const LanguageScreen(),
+      binding: LanguageBinding(),
     ),
   ];
 }

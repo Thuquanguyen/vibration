@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:vibration_strong/ad_manager.dart';
+import 'package:vibration_strong/applovin_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';
-import 'package:vibration_strong/core/assets/app_assets.dart';
-import 'package:vibration_strong/core/theme/textstyles.dart';
 import 'package:vibration_strong/screens/home/home_controller.dart';
-import 'package:vibration_strong/utils/touchable.dart';
 
+import '../core/assets/app_assets.dart';
 import '../core/common/app_func.dart';
 import '../core/common/imagehelper.dart';
 import '../core/model/vibration_model.dart';
+import '../core/theme/textstyles.dart';
+import '../language/i18n.g.dart';
 import '../routes/app_pages.dart';
 import '../screens/in_app_manage.dart';
+import '../utils/app_utils.dart';
+import '../utils/touchable.dart';
+import 'package:applovin_max/applovin_max.dart';
 
 class ItemVibration extends StatelessWidget {
   ItemVibration({Key? key, this.vibrationModel, this.controller, this.index})
@@ -23,35 +28,24 @@ class ItemVibration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Touchable(
-      onTap: () {
-        if (!IAPConnection().isAvailable && vibrationModel?.isPremium == true) {
+      onTap: () async {
+        if (vibrationModel?.isPremium == true && !IAPConnection().isAvailable) {
           Vibration.cancel();
-          AppFunc.showAlertDialogConfirm(context,
-              message: 'Need to unlock to enable the new vibration mode',
-              callBack: () {
-                Get.back();
-                Get.toNamed(Routes.PREMIUM);
-              });
+          Get.toNamed(Routes.PREMIUM);
         } else {
-          if ((index ?? 0) > 4 &&
-              (index ?? 0) < 10 &&
-              !IAPConnection().isAvailable &&
-              IAPConnection().hasVibrator) {
-            AppFunc.showAlertDialogConfirm(context,
-                message:
-                'You need to see this ad to get the new vibration mode.',
-                cancelCallback: () {
-                  controller?.rewardedAd?.show(onUserEarnedReward: (a, b) {
-                    controller?.changeSelected(index ?? 0);
-                    Vibration.cancel();
-                    vibrationModel?.onTap?.call();
-                  });
-                });
-          } else {
-            controller?.changeSelected(index ?? 0);
-            Vibration.cancel();
-            vibrationModel?.onTap?.call();
+          if ((index ?? 0) % 2 == 0 && !IAPConnection().isAvailable) {
+            bool isReady = (await AppLovinMAX.isInterstitialReady(
+                AdManager.interstitialAdUnitId))!;
+            print("show show show = $isReady");
+            if (isReady) {
+              AppLovinMAX.showInterstitial(AdManager.interstitialAdUnitId);
+            } else {
+              AppLovinMAX.loadInterstitial(AdManager.interstitialAdUnitId);
+            }
           }
+          controller?.changeSelected(index ?? 0);
+          Vibration.cancel();
+          vibrationModel?.onTap?.call();
         }
       },
       child: Container(
@@ -111,7 +105,7 @@ class ItemVibration extends StatelessWidget {
               height: 4.h,
             ),
             Text(
-              vibrationModel?.title ?? 'Sunny',
+              vibrationModel?.title ?? I18n().sunnyStr.tr,
               style: TextStyles.defaultStyle.setTextSize(10.sp),
             )
           ],

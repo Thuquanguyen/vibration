@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:vibration_strong/core/assets/app_assets.dart';
-import 'package:vibration_strong/core/common/imagehelper.dart';
-import 'package:vibration_strong/core/theme/textstyles.dart';
 
+import '../core/assets/app_assets.dart';
+import '../core/common/imagehelper.dart';
+import '../core/theme/textstyles.dart';
+import '../language/i18n.g.dart';
 import '../routes/app_pages.dart';
+import '../screens/premium/premium_screen.dart';
+import '../utils/app_utils.dart';
 import '../utils/touchable.dart';
 
 class PremiumWidget extends StatelessWidget {
@@ -15,7 +18,7 @@ class PremiumWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Touchable(
       onTap: () {
-        Get.toNamed(Routes.PREMIUM);
+        goToScreen(PremiumScreen());
       },
       child: Container(
         decoration: BoxDecoration(
@@ -52,13 +55,13 @@ class PremiumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Unlock Premium',
+                    I18n().unlockPremiumStr.tr,
                     style: TextStyles.title1
                         .setColor(Colors.white),
                   ),
                   SizedBox(height: 1.h,),
                   Text(
-                    'Feel completely relaxed\nwith no limits.',
+                    I18n().subUnlockPremiumStr.tr,
                     style: TextStyles.defaultStyle.setTextSize(13.sp).setColor(Colors.white),
                   ),
                 ],

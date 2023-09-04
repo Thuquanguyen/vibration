@@ -12,6 +12,7 @@ import '../core/theme/textstyles.dart';
 import '../routes/app_pages.dart';
 import '../screens/audio_player.dart';
 import '../screens/in_app_manage.dart';
+import '../utils/app_utils.dart';
 import '../utils/touchable.dart';
 
 class ItemMusic extends StatelessWidget {
@@ -32,31 +33,7 @@ class ItemMusic extends StatelessWidget {
             AudioPlayerVibration().stopAudio();
             controller?.changeSelectedMusic(index ?? 0);
           } else {
-            if (IAPConnection().hasVibrator) {
-              AppFunc.showAlertDialogConfirm(context,
-                  message:
-                      'Do you need to unlock or see this ad to hear the music?',
-                  callBack: () {
-                Get.back();
-                Get.toNamed(Routes.PREMIUM);
-              }, cancelCallback: () {
-                controller?.rewardedAd?.show(onUserEarnedReward: (a, b) {
-                  controller?.changeSelectedMusic(index ?? 0);
-                  musicModel?.onTab?.call();
-                  AudioPlayerVibration().currentUrl = musicModel?.url ??
-                      "https://storage.googleapis.com/vibrate/Autumn%20In%20My%20Heart.mp3";
-                  AudioPlayerVibration()
-                      .playAudio(title: musicModel?.title ?? '');
-                });
-              });
-            } else {
-              AppFunc.showAlertDialogConfirm(context,
-                  message: 'Need to unlock to listen to this song?',
-                  callBack: () {
-                Get.back();
-                Get.toNamed(Routes.PREMIUM);
-              });
-            }
+            Get.toNamed(Routes.PREMIUM);
           }
         } else {
           controller?.changeSelectedMusic(index ?? 0);
@@ -119,17 +96,17 @@ class ItemMusic extends StatelessWidget {
               Align(
                   alignment: Alignment.topRight,
                   child: (!IAPConnection().isAvailable &&
-                          musicModel?.isPremium == true)
+                      musicModel?.isPremium == true)
                       ? Container(
-                          padding: const EdgeInsets.only(
-                              left: 6, top: 2, right: 2, bottom: 6),
-                          decoration: const BoxDecoration(
-                              color: Colors.pinkAccent,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(20))),
-                          child: ImageHelper.loadFromAsset(AppAssets.icPremium,
-                              width: 10, height: 10),
-                        )
+                    padding: const EdgeInsets.only(
+                        left: 6, top: 2, right: 2, bottom: 6),
+                    decoration: const BoxDecoration(
+                        color: Colors.pinkAccent,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20))),
+                    child: ImageHelper.loadFromAsset(AppAssets.icPremium,
+                        width: 10, height: 10),
+                  )
                       : const SizedBox())
             ],
           ),

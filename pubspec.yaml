@@ -51,6 +51,7 @@ dependencies:
   device_info_plus:
   firebase_core: ^2.2.0
   http: ^0.13.4
+  pageview_widget_indicator: ^0.0.4
   get_storage: ^2.1.1
   vibration: ^1.7.6
   shimmer: ^2.0.0
@@ -78,9 +79,9 @@ dependencies:
   firebase_auth: ^4.4.0
   in_app_purchase: ^3.1.5
   intl:
-  google_mobile_ads: ^3.0.0
   recase: ^4.1.0
   flutter_keyboard_visibility: ^5.1.0
+  applovin_max: ^3.2.0
 
 
 dev_dependencies:

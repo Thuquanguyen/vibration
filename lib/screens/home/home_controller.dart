@@ -1,7 +1,7 @@
+import 'package:applovin_max/applovin_max.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:vibration/vibration.dart';
 import 'package:vibration_strong/core/assets/app_assets.dart';
 import 'package:vibration_strong/core/base/base_controller.dart';
@@ -10,16 +10,16 @@ import 'package:vibration_strong/core/service/notification_service.dart';
 import 'package:vibration_strong/core/theme/dimens.dart';
 
 import '../../ad_manager.dart';
-import '../../ads/app_lifecircle_factory.dart';
-import '../../ads/open_app_ads_manage.dart';
+import '../../applovin_manager.dart';
 import '../../core/model/vibration_model.dart';
+import '../../language/i18n.g.dart';
 import '../audio_player.dart';
 import '../in_app_manage.dart';
 
 class HomeController extends BaseController {
   RxList<VibrationModel> vibrations = <VibrationModel>[
     VibrationModel(
-        title: 'Sunny',
+        title: I18n().sunnyStr.tr,
         icon: AppAssets.icSunny,
         onTap: () {
           Vibration.vibrate(
@@ -31,7 +31,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Heart',
+        title: I18n().heartStr.tr,
         icon: AppAssets.icHeart,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -61,7 +61,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Wave',
+        title: I18n().waveStr.tr,
         icon: AppAssets.icWave,
         onTap: () {
           Vibration.vibrate(
@@ -73,7 +73,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Magic',
+        title: I18n().magicStr.tr,
         icon: AppAssets.icMagic,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -101,7 +101,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Dry',
+        title: I18n().dryStr.tr,
         icon: AppAssets.icDry,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -131,7 +131,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Expand',
+        title: I18n().expandStr.tr,
         icon: AppAssets.icExpand,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -161,7 +161,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Refresh',
+        title: I18n().refreshStr.tr,
         icon: AppAssets.icRefresh,
         onTap: () {
           Vibration.vibrate(
@@ -173,7 +173,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Breeze',
+        title: I18n().breezeStr.tr,
         icon: AppAssets.icBreeze,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -207,7 +207,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Rise',
+        title: I18n().riseStr.tr,
         icon: AppAssets.icRise,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -265,7 +265,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Dramatic',
+        title: I18n().dramaticStr.tr,
         icon: AppAssets.icDrammatic,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -298,7 +298,7 @@ class HomeController extends BaseController {
         isPremium: false,
         isSelected: false),
     VibrationModel(
-        title: 'Heavy',
+        title: I18n().heavyStr.tr,
         icon: AppAssets.icHeavy,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -330,7 +330,7 @@ class HomeController extends BaseController {
         isPremium: true,
         isSelected: false),
     VibrationModel(
-        title: 'Snow',
+        title: I18n().snowStr.tr,
         icon: AppAssets.icSnow,
         onTap: () {
           Vibration.vibrate(
@@ -342,7 +342,7 @@ class HomeController extends BaseController {
         isPremium: true,
         isSelected: false),
     VibrationModel(
-        title: 'Tingle',
+        title: I18n().tingleStr.tr,
         icon: AppAssets.icTingle,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -386,7 +386,7 @@ class HomeController extends BaseController {
         isPremium: true,
         isSelected: false),
     VibrationModel(
-        title: 'Dotted',
+        title: I18n().dottedStr.tr,
         icon: AppAssets.icDotted,
         onTap: () {
           Vibration.vibrate(pattern: [
@@ -416,7 +416,7 @@ class HomeController extends BaseController {
         isPremium: true,
         isSelected: false),
     VibrationModel(
-        title: 'Warn',
+        title: I18n().warnStr.tr,
         icon: AppAssets.icWarn,
         onTap: () {
           Vibration.vibrate(
@@ -448,50 +448,28 @@ class HomeController extends BaseController {
   ];
 
   RxString backgroundColor = ''.obs;
-  RxString song = 'Sing my song'.obs;
+  RxString song = I18n().singMySongStr.tr.obs;
   RxDouble progress = 0.0.obs;
   RxDouble initValue = 0.0.obs;
 
   getTitle(double value) {
     if (value < 500) {
-      return 'Low';
+      return I18n().lowStr.tr;
     } else if (value >= 500 && value < 1000) {
-      return 'Medium';
+      return I18n().mediumStr.tr;
     } else {
-      return 'High';
+      return I18n().highStr.tr;
     }
   }
 
-  InterstitialAd? interstitialAd;
-  RewardedAd? rewardedAd;
-  Rx<BannerAd> bannerAd = BannerAd(
-      size: const AdSize(width: 0, height: 0),
-      adUnitId: AdManager.bannerAdUnitId,
-      listener: const BannerAdListener(),
-      request: const AdRequest())
-      .obs;
-
-  RxBool isLoadAds = false.obs;
 
   @override
   void onInit() {
     // TODO: implement onInit
     NotificationService().showNotification();
-    loadBannerAds();
-    loadInterstitialAd();
-    loadRewardedAd();
-    AppOpenAdManager appOpenAdManager = AppOpenAdManager()..loadAd();
-    AppLifecycleReactor(appOpenAdManager: appOpenAdManager)
-        .listenToAppStateChanges();
+    ApplovinManager().initInter();
+    AppLovinMAX.loadInterstitial(AdManager.interstitialAdUnitId);
     super.onInit();
-  }
-
-  @override
-  void dispose() {
-    bannerAd.value.dispose();
-    interstitialAd?.dispose();
-    rewardedAd?.dispose();
-    super.dispose();
   }
 
   void changeSelected(int index) {
@@ -505,67 +483,5 @@ class HomeController extends BaseController {
 
   Future<bool> checkPurchase() async {
     return await IAPConnection.instance.isAvailable();
-  }
-
-  void loadBannerAds(){
-    BannerAd(
-      adUnitId: AdManager.bannerAdUnitId,
-      request: AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          bannerAd.value = ad as BannerAd;
-          isLoadAds.value = true;
-        },
-        onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message} - ${ad.adUnitId}');
-          ad.dispose();
-        },
-      ),
-    ).load();
-  }
-  void loadRewardedAd() {
-    RewardedAd.load(
-      adUnitId: AdManager.rewardedAdUnitId,
-      request: AdRequest(),
-      rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              rewardedAd = null;
-              loadRewardedAd();
-            },
-          );
-          rewardedAd = ad;
-        },
-        onAdFailedToLoad: (err) {
-          print('Failed to load a rewarded ad: ${err.message}');
-        },
-      ),
-    );
-  }
-
-  void loadInterstitialAd() {
-    InterstitialAd.load(
-      adUnitId: AdManager.interstitialAdUnitId,
-      request: AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              interstitialAd = null;
-              loadInterstitialAd();
-              print("onAdDismissedFullScreenContent");
-            },
-          );
-          interstitialAd = ad;
-        },
-        onAdFailedToLoad: (err) {
-          print('Failed to load an interstitial ad: ${err.message}');
-        },
-      ),
-    );
   }
 }

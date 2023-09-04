@@ -12,17 +12,17 @@ import 'package:vibration_strong/core/theme/app_themes.dart';
 import 'package:vibration_strong/routes/app_pages.dart';
 import 'package:vibration_strong/utils/app_loading.dart';
 
+import 'applovin_manager.dart';
 import 'binding/root_binding.dart';
+import 'core/app_translations.dart';
 import 'core/common/app_func.dart';
 import 'core/service/notification_service.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {
   void initApp() async {
     WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     await Firebase.initializeApp();
-    await MobileAds.instance.initialize();
     FlutterNativeSplash.remove();
     NotificationService().initializePlatformNotifications();
     AppFunc.initLoadingStyle();
@@ -30,7 +30,8 @@ void main() {
 
   runZonedGuarded(() async {
     initApp();
-    // IapManager().initPlatformState();
+    AppTranslations.init();
+    ApplovinManager().initializePlugin();
     initLoadingStyle();
     runApp(
       ScreenUtilInit(
@@ -46,7 +47,8 @@ void main() {
                 initialRoute: AppPages.INITIAL,
                 initialBinding: RootBinding(),
                 getPages: AppPages.routes,
-                locale: const Locale('en'),
+                locale: AppTranslations.fallbackLocale,
+                translations: AppTranslations(),
                 theme: AppThemes().general(),
                 builder: EasyLoading.init(
                     builder: (context, child) => MediaQuery(

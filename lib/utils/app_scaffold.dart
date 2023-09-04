@@ -19,27 +19,27 @@ class AppbarAction {
 class AppScaffold extends StatelessWidget {
   const AppScaffold(
       {Key? key,
-      required this.body,
-      this.title,
-      this.isScroll = false,
-      this.hideBackButton = false,
-      this.onWillPop,
-      this.padding,
-      this.margin,
-      this.safeArea = false,
-      this.paddingTop,
-      this.footer,
-      this.titleView,
-      this.titleStyle,
-      this.hideAppBar = false,
-      this.resizeToAvoidBottomInset,
-      this.appBarHeight,
-      this.actions,
-      this.color,
-      this.leading,
-      this.drawer,
-      this.customAppBar,
-      this.scaffoldkey})
+        required this.body,
+        this.title,
+        this.isScroll = false,
+        this.hideBackButton = false,
+        this.onWillPop,
+        this.padding,
+        this.margin,
+        this.safeArea = false,
+        this.paddingTop,
+        this.footer,
+        this.titleView,
+        this.titleStyle,
+        this.hideAppBar = false,
+        this.resizeToAvoidBottomInset,
+        this.appBarHeight,
+        this.actions,
+        this.color,
+        this.leading,
+        this.drawer,
+        this.customAppBar,
+        this.scaffoldkey})
       : super(key: key);
   final Widget body;
   final String? title;
@@ -77,89 +77,85 @@ class AppScaffold extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Scaffold(
+              backgroundColor: color ?? Colors.white,
               resizeToAvoidBottomInset: resizeToAvoidBottomInset,
               drawer: drawer,
               key: scaffoldkey,
-              body: Container(
-                padding: padding,
-                color: color ?? Colors.white,
-                child: SafeArea(
-                  top: safeArea,
-                  bottom: safeArea,
-                  left: safeArea,
-                  right: safeArea,
-                  child: Column(
-                    children: [
-                      if (safeArea == false)
-                        SizedBox(
-                          height: paddingTop ?? 38.h,
-                        ),
-                      if (hideAppBar != true && customAppBar == null)
-                        Container(
-                          height: appBarHeight ?? AppBar().preferredSize.height,
-                          color: color ?? Colors.white,
-                          child: Stack(
-                            children: [
-                              if (hideBackButton != true)
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Touchable(
-                                    onTap: (){
-                                      Logger.debug('AppScaffold back click');
-                                      _willPopCallback(context);
-                                    },
-                                    child: Container(
-                                      height: double.infinity,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24),
-                                      child: leading ??
-                                          ImageHelper.loadFromAsset(
-                                            AppAssets.icBack,
-                                            width: 17,
-                                            height: 17,
-                                            tintColor: const Color(0xff505050),
-                                          ),
-                                    ),
+              body: SafeArea(
+                top: safeArea,
+                bottom: safeArea,
+                left: safeArea,
+                right: safeArea,
+                child: Column(
+                  children: [
+                    if (safeArea == true)
+                      SizedBox(
+                        height: paddingTop ?? 38.h,
+                      ),
+                    if (hideAppBar != true && customAppBar == null)
+                      Container(
+                        height: appBarHeight ?? AppBar().preferredSize.height,
+                        color: color ?? Colors.white,
+                        child: Stack(
+                          children: [
+                            if (hideBackButton != true)
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Touchable(
+                                  onTap: () {
+                                    Logger.debug('AppScaffold back click');
+                                    _willPopCallback(context);
+                                  },
+                                  child: Container(
+                                    height: double.infinity,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 24),
+                                    child: leading ??
+                                        ImageHelper.loadFromAsset(
+                                          AppAssets.icBack,
+                                          width: 17,
+                                          height: 17,
+                                          tintColor: const Color(0xff505050),
+                                        ),
                                   ),
                                 ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: titleView ??
-                                    Text(
-                                      title ?? '',
-                                      style:
-                                          titleStyle ?? TextStyles.defaultStyle,
-                                    ),
                               ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 16.w),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: actions
-                                            ?.map(
-                                              (AppbarAction e) => Touchable(
-                                                  onTap: e.onPress ?? () {},
-                                                  child: e.widgetAction),
-                                            )
-                                            .toList() ??
-                                        [],
+                            Align(
+                              alignment: Alignment.center,
+                              child: titleView ??
+                                  Text(
+                                    title ?? '',
+                                    style:
+                                    titleStyle ?? TextStyles.defaultStyle,
                                   ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 16.w),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: actions
+                                      ?.map(
+                                        (AppbarAction e) => Touchable(
+                                        onTap: e.onPress ?? () {},
+                                        child: e.widgetAction),
+                                  )
+                                      .toList() ??
+                                      [],
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            )
+                          ],
                         ),
-                      if (customAppBar != null)
-                        customAppBar ?? const SizedBox(),
-                      Expanded(
-                          child: Container(
-                        color: color ?? AppColors.customColor1,
-                        child: body,
-                      ))
-                    ],
-                  ),
+                      ),
+                    if (customAppBar != null) customAppBar ?? const SizedBox(),
+                    Expanded(
+                        child: Container(
+                          color: color ?? AppColors.customColor1,
+                          child: body,
+                        ))
+                  ],
                 ),
               ),
             ),

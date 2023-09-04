@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.vibration.massage">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -48,12 +49,8 @@
        <meta-data
            android:name="com.google.android.gms.wallet.api.enabled"
            android:value="true" />
-
-       <meta-data
-           android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="ca-app-pub-8724493546060841~7083568152" />
-<!--           android:value="ca-app-pub-3940256099942544~3347511713" />-->
-
+       <meta-data android:name="applovin.sdk.key"
+           android:value="hSsRnQ4Zzz5gbaWTKEftwpHxlJucNOpkZeBvEPnogcgWAAB9ERVIFHNG_WHhJTkHCh5AyFcRTF6kN711_nKE3d"/>
        <meta-data
            android:name="assets.audio.player.notification.icon"
            android:resource="@drawable/ic_music_custom"/>

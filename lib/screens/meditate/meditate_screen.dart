@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../../ad_manager.dart';
+import '../../applovin_manager.dart';
 import '../../core/theme/dimens.dart';
 import '../../core/theme/textstyles.dart';
+import '../../language/i18n.g.dart';
 import '../../utils/app_scaffold.dart';
 import '../../widget/item_music.dart';
 import '../in_app_manage.dart';
 import 'meditate_controller.dart';
+import 'package:applovin_max/applovin_max.dart';
 
 class MeditateScreen extends GetView<MeditateController> {
   const MeditateScreen({Key? key}) : super(key: key);
@@ -28,24 +31,6 @@ class MeditateScreen extends GetView<MeditateController> {
               SizedBox(
                 height: Dimens.topSafeAreaPadding,
               ),
-              if (!IAPConnection().isAvailable)
-                Obx(() => Visibility(
-                  visible: controller.isLoadAds.value,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: SizedBox(
-                      width:
-                      controller.bannerAd.value.size.width.toDouble(),
-                      height:
-                      controller.bannerAd.value.size.height.toDouble(),
-                      child: AdWidget(ad: controller.bannerAd.value),
-                    ),
-                  ),
-                )),
-              if (!IAPConnection().isAvailable)
-                SizedBox(
-                  height: 5.h,
-                ),
               Container(
                 width: Get.width,
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
@@ -56,7 +41,7 @@ class MeditateScreen extends GetView<MeditateController> {
                       height: 20.h,
                     ),
                     Text(
-                      "Meditation Music & ASMR",
+                      I18n().meditationMusicAsmrStr.tr,
                       style: TextStyles.title1
                           .setHeight(0.1)
                           .setColor(Colors.black),
@@ -65,7 +50,7 @@ class MeditateScreen extends GetView<MeditateController> {
                       height: 10,
                     ),
                     Text(
-                        "Meditation music is powerful and listening to it can improve your brainpower and inner peace.",
+                        I18n().subMeditationMusicAsmrStr.tr,
                         style: TextStyles.defaultStyle
                             .setTextSize(11)
                             .setColor(Colors.grey)),
@@ -73,7 +58,7 @@ class MeditateScreen extends GetView<MeditateController> {
                       height: 12,
                     ),
                     Text(
-                      "Browse by goal",
+                      I18n().subSubMeditationMusicAsmrStr.tr,
                       style: TextStyles.body3
                           .setHeight(0.7)
                           .setColor(Colors.black),
@@ -97,6 +82,35 @@ class MeditateScreen extends GetView<MeditateController> {
                     itemCount: controller.listMusics.length,
                     crossAxisCount: 2,
                   ))),
+              if(!IAPConnection().isAvailable)
+                Container(
+                    height: 1,
+                    width: Get.width,
+                    color: Colors.grey.withOpacity(0.5),
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10)),
+              if(!IAPConnection().isAvailable)
+                MaxAdView(
+                    adUnitId: AdManager.bannerAdUnitId,
+                    adFormat: AdFormat.banner,
+                    isAutoRefreshEnabled: false,
+                    listener: AdViewAdListener(onAdLoadedCallback: (ad) {
+                      ApplovinManager().logStatus(
+                          'Banner widget ad loaded from ${ad.networkName}');
+                    }, onAdLoadFailedCallback: (adUnitId, error) {
+                      ApplovinManager().logStatus(
+                          'Banner widget ad failed to load with error code ${error.code} and message: ${error.message}');
+                    }, onAdClickedCallback: (ad) {
+                      ApplovinManager().logStatus('Banner widget ad clicked');
+                    }, onAdExpandedCallback: (ad) {
+                      ApplovinManager().logStatus('Banner widget ad expanded');
+                    }, onAdCollapsedCallback: (ad) {
+                      ApplovinManager().logStatus('Banner widget ad collapsed');
+                    }, onAdRevenuePaidCallback: (ad) {
+                      ApplovinManager().logStatus(
+                          'Banner widget ad revenue paid: ${ad.revenue}');
+                    })),
+              if(!IAPConnection().isAvailable)
+                SizedBox(height: 10,)
             ],
           ),
         ));

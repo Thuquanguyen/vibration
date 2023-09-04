@@ -11,6 +11,7 @@ import 'package:vibration_strong/routes/app_pages.dart';
 import '../../constants.dart';
 import '../../core/local_storage/localStorageHelper.dart';
 import '../../core/model/purchasable_product.dart';
+import '../../language/i18n.g.dart';
 import '../in_app_manage.dart';
 
 class PremiumController extends BaseController {
@@ -18,13 +19,13 @@ class PremiumController extends BaseController {
   final iapConnection = IAPConnection.instance;
   List<PurchasableProduct> products = [];
   RxList<PackageModel> packages = <PackageModel>[
-    PackageModel(title: 'Popular', unit: 'Weekly', price: '69.000 đ'),
+    PackageModel(title: I18n().popularStr.tr, unit: I18n().weeklyStr.tr, price: '69.000 đ'),
     PackageModel(
-        title: 'Extra\n10 Days',
-        unit: 'Monthly',
+        title: I18n().extra10DayStr.tr,
+        unit: I18n().monthlyStr.tr,
         price: '289.000 đ',
         isSelected: true),
-    PackageModel(title: 'Best Price', unit: 'Lifetime', price: '579.000 đ'),
+    PackageModel(title: I18n().bestPriceStr.tr, unit: I18n().lifetimeStr.tr, price: '579.000 đ'),
   ].obs;
   RxInt indexSelected = 1.obs;
 
@@ -39,6 +40,15 @@ class PremiumController extends BaseController {
     );
     loadPurchases();
     super.onInit();
+  }
+
+  getTitle(){
+    if(indexSelected.value == 0){
+      return I18n().noteWeekly1Str.tr;
+    }else if(indexSelected.value == 1){
+      return I18n().noteMonthly1Str.tr;
+    }
+    return I18n().noteLifetime1Str.tr;
   }
 
   @override

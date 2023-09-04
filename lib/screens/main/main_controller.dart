@@ -4,7 +4,10 @@ import 'package:vibration/vibration.dart';
 import 'package:vibration_strong/screens/home/home_controller.dart';
 import 'package:vibration_strong/screens/home/home_screen.dart';
 import 'package:vibration_strong/screens/setting/setting_screen.dart';
+import '../../applovin_manager.dart';
 import '../../core/base/base_controller.dart';
+import '../../language/i18n.g.dart';
+import '../../routes/app_pages.dart';
 import '../in_app_manage.dart';
 import '../meditate/meditate_screen.dart';
 import '../music/music_screen.dart';
@@ -13,31 +16,31 @@ import 'component/tab_nav.dart';
 import 'keep_alive_page.dart';
 import 'model/screen_model.dart';
 
-class MainController extends BaseController {
+class MainController extends BaseController with WidgetsBindingObserver{
 
   final screensData = <ScreenModel>[
     ScreenModel(
-        name: "Massage",
-        screen: KeepAlivePage(child: const Homescreen()),
+        name: I18n().massageStr.tr,
+        screen: KeepAlivePage(child: HomeScreen()),
         navKey: 1,
         icon: Icons.vibration),
     ScreenModel(
-        name: "Sounds",
+        name: I18n().soundsStr.tr,
         screen: KeepAlivePage(child: const MusicScreen()),
         navKey: 2,
         icon: Icons.music_note_outlined),
     ScreenModel(
-        name: "Meditate",
+        name: I18n().meditateStr.tr,
         screen: KeepAlivePage(child: const MeditateScreen()),
         navKey: 3,
         icon: Icons.ac_unit),
     ScreenModel(
-        name: "Sleep",
+        name: I18n().sleepStr.tr,
         screen: KeepAlivePage(child: const SleepScreen()),
         navKey: 4,
         icon: Icons.access_time_rounded),
     ScreenModel(
-        name: "Settings",
+        name: I18n().moreStr.tr,
         screen: KeepAlivePage(child:  SettingScreen()),
         navKey: 5,
         icon: Icons.settings),
@@ -72,7 +75,32 @@ class MainController extends BaseController {
   void onInit() {
     // TODO: implement onInit
     checkVibration();
+    ApplovinManager().initAppOpen();
+    WidgetsBinding.instance.addObserver(this);
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        if(Get.previousRoute != Routes.LANGUAGE){
+          await ApplovinManager().showAdIfReady();
+        }
+        break;
+
+      case AppLifecycleState.paused:
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.detached:
+        break;
+    }
   }
 
   void checkVibration() async {

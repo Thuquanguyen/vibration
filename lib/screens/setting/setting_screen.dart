@@ -1,49 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:vibration_strong/core/theme/textstyles.dart';
-import 'package:vibration_strong/utils/app_scaffold.dart';
-import 'package:vibration_strong/widget/item_menu.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:vibration_strong/screens/setting/setting_controller.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/theme/dimens.dart';
+import '../../core/theme/textstyles.dart';
+import '../../routes/app_pages.dart';
+import '../../utils/app_scaffold.dart';
+import '../../widget/item_menu.dart';
 import '../../widget/premium_widget.dart';
 import '../in_app_manage.dart';
-import 'setting_controller.dart';
 
 class SettingScreen extends GetView<SettingController> {
+  const SettingScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      color: Colors.cyanAccent.withOpacity(0.05),
       hideBackButton: true,
       appBarHeight: 0,
       hideAppBar: true,
       paddingTop: 0,
+      color: AppColors.customColor9,
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+        margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 0.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (!IAPConnection().isAvailable)
-              SizedBox(
-                height: Dimens.topSafeAreaPadding + 10,
-              ),
-            if (!IAPConnection().isAvailable)
-              Obx(() => Visibility(
-                visible: controller.isLoadAds.value,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    width: controller.bannerAd.value.size.width.toDouble(),
-                    height:
-                    controller.bannerAd.value.size.height.toDouble(),
-                    child: AdWidget(ad: controller.bannerAd.value),
-                  ),
-                ),
-              )),
             SizedBox(
-              height: Dimens.topSafeAreaPadding + 10,
+              height: Dimens.topSafeAreaPadding + 50,
             ),
             if (!IAPConnection().isAvailable) const PremiumWidget(),
             SizedBox(
@@ -57,9 +43,10 @@ class SettingScreen extends GetView<SettingController> {
               height: 10.h,
             ),
             ...controller.vibrations.map((e) => ItemMenu(
-                  vibrationModel: e,
+              vibrationModel: e,
               settingController: controller,
-                )),
+            )),
+            Spacer(),
           ],
         ),
       ),

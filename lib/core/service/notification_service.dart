@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:vibration_strong/language/i18n.g.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -21,17 +21,19 @@ class NotificationService {
   final BehaviorSubject<String> behaviorSubject = BehaviorSubject();
 
   Future<void> initializePlatformNotifications() async {
-    await localNotifications.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()?.requestPermission();
+    await localNotifications
+        .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestPermission();
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('app_ic');
+    AndroidInitializationSettings('app_ic');
 
     final DarwinInitializationSettings initializationSettingsDarwin =
-        DarwinInitializationSettings(
-            onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    DarwinInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
 
     final InitializationSettings initializationSettings =
-        InitializationSettings(
+    InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
@@ -41,18 +43,18 @@ class NotificationService {
     tz.setLocalLocation(tz.getLocation("Asia/Ho_Chi_Minh"));
   }
 
-  void showNotification()async{
-    const AndroidNotificationDetails androidNotificationDetails =
-    AndroidNotificationDetails(
-        'repeating channel id', 'Vibration Strong',
-        channelDescription: 'Did you relax today?\nOpen Vibration App to relax now!');
-    const NotificationDetails notificationDetails =
+  void showNotification() async {
+    AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails('repeating channel id', 'Vibration Strong',
+        channelDescription: I18n().didYouRelaxStr);
+    NotificationDetails notificationDetails =
     NotificationDetails(android: androidNotificationDetails);
     await localNotifications.zonedSchedule(
         0,
         'Vibration Strong',
-        'Did you relax today?\nOpen Vibration App to relax now!',
-        tz.TZDateTime.now(tz.local).add(const Duration(hours: 7,minutes: 0,seconds: 0)),
+        I18n().didYouRelaxStr,
+        tz.TZDateTime.now(tz.local)
+            .add(const Duration(hours: 7, minutes: 0, seconds: 0)),
         notificationDetails,
         androidAllowWhileIdle: true,
         matchDateTimeComponents: DateTimeComponents.time,
@@ -61,8 +63,9 @@ class NotificationService {
     await localNotifications.zonedSchedule(
         1,
         'Vibration Strong',
-        'Did you relax today?\nOpen Vibration App to relax now!',
-        tz.TZDateTime.now(tz.local).add(const Duration(hours: 20,minutes: 0,seconds: 0)),
+        I18n().didYouRelaxStr,
+        tz.TZDateTime.now(tz.local)
+            .add(const Duration(hours: 20, minutes: 0, seconds: 0)),
         notificationDetails,
         androidAllowWhileIdle: true,
         matchDateTimeComponents: DateTimeComponents.time,
@@ -70,10 +73,13 @@ class NotificationService {
         UILocalNotificationDateInterpretation.absoluteTime);
   }
 
-  Future<bool?>? requestPermission(){
-    return localNotifications.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()?.requestPermission();
+  Future<bool?>? requestPermission() {
+    return localNotifications
+        .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestPermission();
   }
+
   void onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) {
     print('id $id');

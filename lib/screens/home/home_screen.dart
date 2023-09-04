@@ -1,32 +1,33 @@
 import 'package:audio_wave/audio_wave.dart';
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:vibration_strong/ad_manager.dart';
+import 'package:vibration_strong/applovin_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:vibration/vibration.dart';
-import 'package:vibration_strong/core/assets/app_assets.dart';
-import 'package:vibration_strong/core/common/app_func.dart';
-import 'package:vibration_strong/core/theme/dimens.dart';
-import 'package:vibration_strong/core/theme/textstyles.dart';
-import 'package:vibration_strong/routes/app_pages.dart';
-import 'package:vibration_strong/screens/audio_player.dart';
-import 'package:vibration_strong/utils/app_scaffold.dart';
-import 'package:vibration_strong/utils/touchable.dart';
-import 'package:filling_slider/filling_slider.dart';
-import 'package:vibration_strong/widget/item_music.dart';
+import 'package:vibration_strong/screens/home/home_controller.dart';
+import '../../core/assets/app_assets.dart';
+import '../../core/common/app_func.dart';
 import '../../core/common/imagehelper.dart';
 import '../../core/theme/app_colors.dart';
-import '../../widget/item_vibration.dart';
-import '../in_app_manage.dart';
-import 'home_controller.dart';
+import '../../core/theme/dimens.dart';
+import '../../core/theme/textstyles.dart';
+import '../../language/i18n.g.dart';
+import '../../routes/app_pages.dart';
+import '../../utils/app_scaffold.dart';
 import '../../utils/scrolling_text.dart';
+import '../../utils/touchable.dart';
+import 'package:filling_slider/filling_slider.dart';
+import '../../widget/item_music.dart';
+import '../../widget/item_vibration.dart';
 import 'package:rive/rive.dart';
+import '../in_app_manage.dart';
+import 'package:applovin_max/applovin_max.dart';
 
-class Homescreen extends GetView<HomeController> {
-  const Homescreen({Key? key}) : super(key: key);
-
+class HomeScreen extends GetView<HomeController> {
+  HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -34,7 +35,6 @@ class Homescreen extends GetView<HomeController> {
       appBarHeight: 0,
       hideAppBar: true,
       paddingTop: 0,
-      color: AppColors.customColor9,
       body: ExpandableBottomSheet(
         key: key,
         animationDurationExtend: const Duration(milliseconds: 500),
@@ -42,40 +42,19 @@ class Homescreen extends GetView<HomeController> {
         animationCurveExpand: Curves.bounceOut,
         animationCurveContract: Curves.ease,
         persistentContentHeight: Dimens.screenHeight * 0.32,
-        background: Column(
+        background: Stack(
           children: [
-            if (!IAPConnection().isAvailable)
-              SizedBox(
-                height: Dimens.topSafeAreaPadding,
-              ),
-            if (!IAPConnection().isAvailable)
-              Obx(() => Visibility(
-                visible: controller.isLoadAds.value,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    width: controller.bannerAd.value.size.width.toDouble(),
-                    height:
-                    controller.bannerAd.value.size.height.toDouble(),
-                    child: AdWidget(ad: controller.bannerAd.value),
-                  ),
-                ),
-              )),
-            if (!IAPConnection().isAvailable)
-              SizedBox(
-                height: 5.h,
-              ),
-            Expanded(child: Stack(children: [
-              Obx(() => ImageHelper.loadFromAsset(
-                  controller.backgroundColor.value.isEmpty
-                      ? AppAssets.imgDry
-                      : controller.backgroundColor.value,
-                  width: Dimens.screenWidth,
-                  height: Dimens.screenHeight,
-                  fit: BoxFit.cover)),
-              Column(children: [
+            Obx(() => ImageHelper.loadFromAsset(
+                controller.backgroundColor.value.isEmpty
+                    ? AppAssets.imgDry
+                    : controller.backgroundColor.value,
+                width: Dimens.screenWidth,
+                height: Dimens.screenHeight,
+                fit: BoxFit.cover)),
+            Column(
+              children: [
                 SizedBox(
-                  height: IAPConnection().isAvailable ? 55.h : 15.h,
+                  height: 85.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -99,9 +78,8 @@ class Homescreen extends GetView<HomeController> {
                             height: 250,
                             onChange: (a, b) {
                               controller.progress.value = a;
-                              if (a >= 0.5 &&
+                              if ((a == 0.5 || a == 0.85) &&
                                   (!IAPConnection().isAvailable)) {
-                                controller.initValue.value = 0.2;
                                 Get.toNamed(Routes.PREMIUM);
                               }
                               Vibration.vibrate(
@@ -121,7 +99,7 @@ class Homescreen extends GetView<HomeController> {
                                         AppAssets.icPremium,
                                         width: 12.w,
                                         height: 12.w),
-                                  Text("High",
+                                  Text(I18n().highStr.tr,
                                       style: TextStyles.label2.copyWith(
                                           color:
                                           controller.progress.value >=
@@ -135,7 +113,7 @@ class Homescreen extends GetView<HomeController> {
                                         width: 12.w,
                                         height: 12.w),
                                   Text(
-                                    "Medium",
+                                    I18n().mediumStr.tr,
                                     style: TextStyles.label2.copyWith(
                                         color:
                                         controller.progress.value >= 0.5
@@ -144,7 +122,7 @@ class Homescreen extends GetView<HomeController> {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    "Low",
+                                    I18n().lowStr.tr,
                                     style: TextStyles.label2.copyWith(
                                         color: controller.progress.value >=
                                             0.08
@@ -162,26 +140,18 @@ class Homescreen extends GetView<HomeController> {
                   ],
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 20.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 150,
-                      height: 30.h,
-                      child: Obx(() => ScrollingText(
-                        text: controller.song.value,
-                        textStyle: TextStyles.body1,
-                      )),
-                    ),
-                    SizedBox(
-                      width: 15.w,
-                    ),
-                  ],
-                )
-              ],)
-            ],)),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 100.w),
+                  height: 30.h,
+                  child: Obx(() => ScrollingText(
+                    text: controller.song.value,
+                    textStyle: TextStyles.body1,
+                  )),
+                ),
+              ],
+            )
           ],
         ),
         persistentHeader: Container(
@@ -203,7 +173,7 @@ class Homescreen extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Vibration Patterns',
+                      I18n().vibrationPatternsStr.tr,
                       style: TextStyles.body3
                           .setTextSize(12.sp)
                           .setColor(Colors.black)
@@ -213,7 +183,7 @@ class Homescreen extends GetView<HomeController> {
                       height: 2.h,
                     ),
                     Text(
-                      'Please choose vibration patterns below',
+                      I18n().subVibrationPatternsStr.tr,
                       style: TextStyles.defaultStyle.setTextSize(10.sp),
                     )
                   ],
@@ -222,9 +192,12 @@ class Homescreen extends GetView<HomeController> {
               Touchable(
                   onTap: () async {
                     Vibration.cancel();
-                    if (controller.interstitialAd != null &&
-                        !IAPConnection().isAvailable) {
-                      controller.interstitialAd!.show();
+                    bool isReady = (await AppLovinMAX.isInterstitialReady(
+                        AdManager.interstitialAdUnitId))!;
+                    if (isReady && !IAPConnection().isAvailable) {
+                      AppLovinMAX.showInterstitial(AdManager.interstitialAdUnitId);
+                    } else {
+                      AppLovinMAX.loadInterstitial(AdManager.interstitialAdUnitId);
                     }
                   },
                   child: Container(
@@ -237,11 +210,11 @@ class Homescreen extends GetView<HomeController> {
                       ),
                     ),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                    EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
                     child: Row(
                       children: [
                         Text(
-                          "Stop Vibration",
+                          I18n().stopVibrationStr.tr,
                           style: TextStyles.defaultStyle.setTextSize(12.sp),
                         ),
                       ],
@@ -255,16 +228,16 @@ class Homescreen extends GetView<HomeController> {
           color: Colors.white,
           width: Dimens.screenWidth,
           child: Obx(() => GridView.builder(
-                padding: EdgeInsets.symmetric(vertical: 10.h),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5),
-                itemBuilder: (_, index) => ItemVibration(
-                  vibrationModel: controller.vibrations[index],
-                  controller: controller,
-                  index: index,
-                ),
-                itemCount: controller.vibrations.length,
-              )),
+            padding: EdgeInsets.symmetric(vertical: 10.h),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5),
+            itemBuilder: (_, index) => ItemVibration(
+              vibrationModel: controller.vibrations[index],
+              controller: controller,
+              index: index,
+            ),
+            itemCount: controller.vibrations.length,
+          )),
         ),
         enableToggle: false,
       ),

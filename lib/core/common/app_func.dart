@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:vibration_strong/language/i18n.g.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -76,26 +77,26 @@ class AppFunc {
 
   static void initLoadingStyle() {
     EasyLoading.instance
-      // ..displayDuration = const Duration(milliseconds: 2000)
+    // ..displayDuration = const Duration(milliseconds: 2000)
       ..indicatorType = EasyLoadingIndicatorType.fadingCircle
       ..loadingStyle = EasyLoadingStyle.custom
-      // ..indicatorSize = 45.0
+    // ..indicatorSize = 45.0
       ..radius = 10.0
       ..progressColor = Colors.white
       ..backgroundColor = _bg1
       ..indicatorColor = Colors.white
       ..textColor = Colors.white
       ..maskColor = Colors.blue.withOpacity(0.5)
-      // ..userInteractions = false
-      // ..dismissOnTap = false
+    // ..userInteractions = false
+    // ..dismissOnTap = false
       ..animationStyle = EasyLoadingAnimationStyle.opacity
-      // ..indicatorWidget = ImageHelper.loadAsset(AssetHelper.imgVPBankSplashLogo, width: 60, height: 40, fit: BoxFit.contain)
+    // ..indicatorWidget = ImageHelper.loadAsset(AssetHelper.imgVPBankSplashLogo, width: 60, height: 40, fit: BoxFit.contain)
       ..customAnimation = CustomAnimation();
   }
 
   static bool emailValid(String email) {
     return RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email);
   }
 
@@ -103,7 +104,10 @@ class AppFunc {
       {String? message, String? title}) {
     // set up the button
     Widget okButton = TextButton(
-      child: Text("OKay!",style: TextStyles.defaultStyle,),
+      child: Text(
+        "OKay!",
+        style: TextStyles.defaultStyle,
+      ),
       onPressed: () {
         Get.back();
       },
@@ -136,7 +140,7 @@ class AppFunc {
     // set up the button
     Widget okButton = TextButton(
       child: Text(
-        "Unlock now",
+        I18n().unlockNowStr.tr,
         style: TextStyles.defaultStyle,
       ),
       onPressed: callBack,
@@ -145,7 +149,7 @@ class AppFunc {
     // set up the button
     Widget viewAds = TextButton(
       child: Text(
-        "View ads",
+        I18n().viewAdsStr.tr,
         style: TextStyles.defaultStyle,
       ),
       onPressed: () {
@@ -156,7 +160,7 @@ class AppFunc {
 
     Widget cancelButton = TextButton(
       child: Text(
-        "Cancel",
+        I18n().cancelStr.tr,
         style: TextStyles.defaultStyle,
       ),
       onPressed: () {
@@ -166,7 +170,7 @@ class AppFunc {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: const Text("Hi! I'm Vibration"),
+      title: Text(I18n().hiIAmStr.tr),
       content: Text(message ?? ''),
       actions: cancelCallback == null
           ? [okButton, cancelButton]
@@ -184,10 +188,10 @@ class AppFunc {
   }
 
   static showAlertDialogLogout(
-    BuildContext context, {
-    String? message,
-    Function()? callBack,
-  }) {
+      BuildContext context, {
+        String? message,
+        Function()? callBack,
+      }) {
     // set up the button
     Widget okButton = TextButton(
       child: const Text("同意"),
@@ -269,10 +273,10 @@ class AppFunc {
   }
 
   static void showSuccess(
-    String status, {
-    Duration? duration,
-    bool? dismissOnTap,
-  }) {
+      String status, {
+        Duration? duration,
+        bool? dismissOnTap,
+      }) {
     EasyLoading.instance.backgroundColor = _bg1;
     EasyLoading.showSuccess(status,
         duration: duration,
@@ -281,10 +285,10 @@ class AppFunc {
   }
 
   static void showError(
-    String status, {
-    Duration? duration,
-    bool? dismissOnTap,
-  }) {
+      String status, {
+        Duration? duration,
+        bool? dismissOnTap,
+      }) {
     EasyLoading.instance.backgroundColor = _bg2;
     EasyLoading.showError(status,
         duration: duration,
@@ -293,10 +297,10 @@ class AppFunc {
   }
 
   static void showInfo(
-    String status, {
-    Duration? duration,
-    bool? dismissOnTap,
-  }) {
+      String status, {
+        Duration? duration,
+        bool? dismissOnTap,
+      }) {
     EasyLoading.showInfo(status,
         duration: duration,
         dismissOnTap: dismissOnTap,
@@ -308,9 +312,9 @@ class AppFunc {
   }
 
   static void showProgress(
-    double value, {
-    String? status,
-  }) {
+      double value, {
+        String? status,
+      }) {
     EasyLoading.instance.backgroundColor = Colors.green;
     EasyLoading.showProgress(value,
         status: status, maskType: EasyLoadingMaskType.clear);
@@ -367,21 +371,21 @@ class AppFunc {
 
   showAlert(BuildContext context,
       {String? icon,
-      String? title,
-      String? message,
-      String? titleLeft,
-      TextStyle? styleTitleLeft,
-      TextStyle? styleTitleRight,
-      String? titleRight,
-      Function? actionLeft,
-      Color? colorRight,
-      Function? actionRight}) {
+        String? title,
+        String? message,
+        String? titleLeft,
+        TextStyle? styleTitleLeft,
+        TextStyle? styleTitleRight,
+        String? titleRight,
+        Function? actionLeft,
+        Color? colorRight,
+        Function? actionRight}) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDoc(
         icon:
-            ImageHelper.loadFromAsset(icon ?? '', width: 117.w, height: 117.w),
+        ImageHelper.loadFromAsset(icon ?? '', width: 117.w, height: 117.w),
         title: title,
         message: message ?? '',
         actions: Row(
@@ -420,16 +424,16 @@ class AppFunc {
                 child: Container(
                   decoration: colorRight != null
                       ? BoxDecoration(
-                          color: AppColors.statusColor2,
-                          borderRadius: BorderRadius.circular(8.r))
+                      color: AppColors.statusColor2,
+                      borderRadius: BorderRadius.circular(8.r))
                       : BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: FractionalOffset.topCenter,
-                            end: FractionalOffset.bottomCenter,
-                            colors: AppColors.linearPrimary1,
-                            stops: const [0.0, 1.0],
-                          ),
-                          borderRadius: BorderRadius.circular(8.r)),
+                      gradient: LinearGradient(
+                        begin: FractionalOffset.topCenter,
+                        end: FractionalOffset.bottomCenter,
+                        colors: AppColors.linearPrimary1,
+                        stops: const [0.0, 1.0],
+                      ),
+                      borderRadius: BorderRadius.circular(8.r)),
                   padding: EdgeInsets.symmetric(vertical: 14.h),
                   child: Center(
                     child: Text(
