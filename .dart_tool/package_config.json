@@ -446,12 +446,6 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "flutter_native_timezone",
-      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/flutter_native_timezone-2.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.9",
       "packageUri": "lib/",
@@ -1178,7 +1172,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-09-04T16:14:09.116903Z",
+  "generated": "2023-09-05T06:26:53.205495Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

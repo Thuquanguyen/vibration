@@ -48,7 +48,6 @@ class LanguageScreen extends GetView<LanguageController> {
                     padding: EdgeInsets.only(top: 10),
                     child: Touchable(
                         onTap: () {
-
                           Get.toNamed(Routes.WELCOME);
                         },
                         child: Row(
@@ -89,7 +88,7 @@ class LanguageScreen extends GetView<LanguageController> {
             ),
             Obx(() => Container(
                   margin: const EdgeInsets.all(8.0),
-                  height: 200,
+                  height: 300,
                   child: MaxNativeAdView(
                     adUnitId: AdManager.nativeAppAdUnitId,
                     controller: controller.nativeAdViewController.value,
