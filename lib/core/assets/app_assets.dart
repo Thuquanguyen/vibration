@@ -4,6 +4,7 @@ class AppAssets {
 	static const String banner2 = 'assets/images/banner_2.jpeg';
 	static const String banner3 = 'assets/images/banner_3.jpeg';
 	static const String icCrow = 'assets/images/ic_crow.png';
+	static const String icSplat = 'assets/images/ic_splat.jpg';
 	static const String image1 = 'assets/images/image_1.jpeg';
 	static const String img1 = 'assets/images/img_1.jpeg';
 	static const String img10 = 'assets/images/img_10.jpeg';
@@ -17,6 +18,7 @@ class AppAssets {
 	static const String img7 = 'assets/images/img_7.jpeg';
 	static const String img8 = 'assets/images/img_8.jpeg';
 	static const String img9 = 'assets/images/img_9.jpeg';
+	static const String imgAds = 'assets/images/img_ads.png';
 	static const String imgBacground = 'assets/images/img_bacground.png';
 	static const String imgBgPremium = 'assets/images/img_bg_premium.png';
 	static const String imgBreeze = 'assets/images/img_breeze.png';
@@ -92,6 +94,7 @@ class AppAssets {
 	'assets/images/banner_2.jpeg': true,
 	'assets/images/banner_3.jpeg': true,
 	'assets/images/ic_crow.png': true,
+	'assets/images/ic_splat.jpg': true,
 	'assets/images/image_1.jpeg': true,
 	'assets/images/img_1.jpeg': true,
 	'assets/images/img_10.jpeg': true,
@@ -105,6 +108,7 @@ class AppAssets {
 	'assets/images/img_7.jpeg': true,
 	'assets/images/img_8.jpeg': true,
 	'assets/images/img_9.jpeg': true,
+	'assets/images/img_ads.png': true,
 	'assets/images/img_bacground.png': true,
 	'assets/images/img_bg_premium.png': true,
 	'assets/images/img_breeze.png': true,

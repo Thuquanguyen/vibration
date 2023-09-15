@@ -9,8 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:vibration_strong/main.dart';
-import 'package:vibration_strong/screens/in_app_manage.dart';
-import 'package:vibration_strong/screens/splash/splash_screen.dart';
+import 'package:vibration_strong/screen/splash/splash_screen.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

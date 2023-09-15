@@ -7,7 +7,8 @@ import '../core/common/imagehelper.dart';
 import '../core/theme/textstyles.dart';
 import '../language/i18n.g.dart';
 import '../routes/app_pages.dart';
-import '../screens/premium/premium_screen.dart';
+import '../screen/not_vibration/not_vibration_screen.dart';
+import '../screen/premium/premium_screen.dart';
 import '../utils/app_utils.dart';
 import '../utils/touchable.dart';
 
@@ -18,7 +19,7 @@ class PremiumWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Touchable(
       onTap: () {
-        goToScreen(PremiumScreen());
+        Get.toNamed(Routes.PREMIUM);
       },
       child: Container(
         decoration: BoxDecoration(

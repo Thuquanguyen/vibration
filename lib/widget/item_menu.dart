@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vibration_strong/screens/setting/setting_controller.dart';
 import '../core/model/vibration_model.dart';
 import '../core/theme/textstyles.dart';
+import '../vibrator_manage.dart';
+import '../screen/more/more_controller.dart';
 import '../utils/touchable.dart';
 
 class ItemMenu extends StatelessWidget {
-  ItemMenu({Key? key, this.vibrationModel, this.settingController})
+  ItemMenu({Key? key, this.vibrationModel, this.moreController})
       : super(key: key);
   VibrationModel? vibrationModel;
-  SettingController? settingController;
+  MoreController? moreController;
 
   @override
   Widget build(BuildContext context) {

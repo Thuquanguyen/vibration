@@ -80,8 +80,9 @@ dependencies:
   intl:
   recase: ^4.1.0
   flutter_keyboard_visibility: ^5.1.0
-  applovin_max: ^3.2.0
-
+  loading_indicator: ^3.1.1
+  google_mobile_ads: ^2.3.0
+  firebase_database: ^10.2.5
 
 dev_dependencies:
   flutter_test:

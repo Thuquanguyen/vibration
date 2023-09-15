@@ -9,7 +9,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   static final NotificationService _notificationService =
-  NotificationService._internal();
+      NotificationService._internal();
 
   factory NotificationService() {
     return _notificationService;
@@ -23,17 +23,17 @@ class NotificationService {
   Future<void> initializePlatformNotifications() async {
     await localNotifications
         .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.requestPermission();
     const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('app_ic');
+        AndroidInitializationSettings('app_ic');
 
     final DarwinInitializationSettings initializationSettingsDarwin =
-    DarwinInitializationSettings(
-        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+        DarwinInitializationSettings(
+            onDidReceiveLocalNotification: onDidReceiveLocalNotification);
 
     final InitializationSettings initializationSettings =
-    InitializationSettings(
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
@@ -45,10 +45,10 @@ class NotificationService {
 
   void showNotification() async {
     AndroidNotificationDetails androidNotificationDetails =
-    AndroidNotificationDetails('repeating channel id', 'Vibration Strong',
-        channelDescription: I18n().didYouRelaxStr);
+        AndroidNotificationDetails('repeating channel id', 'Vibration Strong',
+            channelDescription: I18n().didYouRelaxStr);
     NotificationDetails notificationDetails =
-    NotificationDetails(android: androidNotificationDetails);
+        NotificationDetails(android: androidNotificationDetails);
     await localNotifications.zonedSchedule(
         0,
         'Vibration Strong',
@@ -59,7 +59,7 @@ class NotificationService {
         androidAllowWhileIdle: true,
         matchDateTimeComponents: DateTimeComponents.time,
         uiLocalNotificationDateInterpretation:
-        UILocalNotificationDateInterpretation.absoluteTime);
+            UILocalNotificationDateInterpretation.absoluteTime);
     await localNotifications.zonedSchedule(
         1,
         'Vibration Strong',
@@ -70,13 +70,13 @@ class NotificationService {
         androidAllowWhileIdle: true,
         matchDateTimeComponents: DateTimeComponents.time,
         uiLocalNotificationDateInterpretation:
-        UILocalNotificationDateInterpretation.absoluteTime);
+            UILocalNotificationDateInterpretation.absoluteTime);
   }
 
   Future<bool?>? requestPermission() {
     return localNotifications
         .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.requestPermission();
   }
 

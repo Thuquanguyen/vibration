@@ -1,32 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:vibration_strong/screen/language/language_binding.dart';
+import 'package:vibration_strong/screen/language/language_screen.dart';
+import 'package:vibration_strong/screen/main/main_binding.dart';
+import 'package:vibration_strong/screen/main/main_screen.dart';
+import 'package:vibration_strong/screen/more/more_binding.dart';
+import 'package:vibration_strong/screen/more/more_screen.dart';
+import 'package:vibration_strong/screen/music/music_binding.dart';
+import 'package:vibration_strong/screen/music/music_screen.dart';
 import 'package:get/get.dart';
-import 'package:vibration_strong/screens/home/home_binding.dart';
-import 'package:vibration_strong/screens/information/information_binding.dart';
-import 'package:vibration_strong/screens/main/main_binding.dart';
-import 'package:vibration_strong/screens/main/main_screen.dart';
-import 'package:vibration_strong/screens/not_vibration/not_vibration_binding.dart';
-import 'package:vibration_strong/screens/premium/premium_binding.dart';
-import 'package:vibration_strong/screens/premium/premium_screen.dart';
-import 'package:vibration_strong/screens/privacy_policy/privacy_policy_screen.dart';
-import 'package:vibration_strong/screens/setting/setting_binding.dart';
-import 'package:vibration_strong/screens/setting/setting_screen.dart';
-import 'package:vibration_strong/screens/term/term_binding.dart';
-import 'package:vibration_strong/screens/term/term_screen.dart';
-import 'package:vibration_strong/screens/welcome/welcome_binding.dart';
-import 'package:vibration_strong/screens/welcome/welcome_screen.dart';
-import '../screens/home/home_screen.dart';
-import '../screens/information/information_screen.dart';
-import '../screens/language/language_binding.dart';
-import '../screens/language/language_screen.dart';
-import '../screens/meditate/meditate_binding.dart';
-import '../screens/meditate/meditate_screen.dart';
-import '../screens/music/music_binding.dart';
-import '../screens/music/music_screen.dart';
-import '../screens/not_vibration/not_vibration_screen.dart';
-import '../screens/privacy_policy/privacy_policy_binding.dart';
-import '../screens/sleep/sleep_binding.dart';
-import '../screens/sleep/sleep_screen.dart';
-import '../screens/splash/splash_binding.dart';
-import '../screens/splash/splash_screen.dart';
+
+import '../screen/home/home_binding.dart';
+import '../screen/home/home_screen.dart';
+import '../screen/information/information_binding.dart';
+import '../screen/information/information_screen.dart';
+import '../screen/meditate/meditate_binding.dart';
+import '../screen/meditate/meditate_screen.dart';
+import '../screen/not_vibration/not_vibration_binding.dart';
+import '../screen/not_vibration/not_vibration_screen.dart';
+import '../screen/premium/premium_binding.dart';
+import '../screen/premium/premium_screen.dart';
+import '../screen/privacy/privacy_binding.dart';
+import '../screen/privacy/privacy_screen.dart';
+import '../screen/sleep/sleep_binding.dart';
+import '../screen/sleep/sleep_screen.dart';
+import '../screen/splash/splash_binding.dart';
+import '../screen/splash/splash_screen.dart';
+import '../screen/term/term_binding.dart';
+import '../screen/term/term_screen.dart';
+import '../screen/welcome/welcome_binding.dart';
+import '../screen/welcome/welcome_screen.dart';
 
 part 'app_routes.dart';
 
@@ -52,6 +54,16 @@ class AppPages {
       binding: SleepBinding(),
     ),
     GetPage(
+      name: _Paths.HOME,
+      page: () => HomeScreen(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.PREMIUM,
+      page: () => const PremiumScreen(),
+      binding: PremiumBinding(),
+    ),
+    GetPage(
       name: _Paths.MAIN,
       page: () => const MainScreen(),
       binding: MainBinding(),
@@ -60,16 +72,6 @@ class AppPages {
       name: _Paths.MUSIC,
       page: () => MusicScreen(),
       binding: MusicBinding(),
-    ),
-    GetPage(
-      name: _Paths.HOME,
-      page: () => HomeScreen(),
-      binding: HomeBinding(),
-    ),
-    GetPage(
-      name: _Paths.SETTING,
-      page: () => SettingScreen(),
-      binding: SettingBinding(),
     ),
     GetPage(
       name: _Paths.INFORMATION,
@@ -82,24 +84,24 @@ class AppPages {
       binding: WelcomeBinding(),
     ),
     GetPage(
-      name: _Paths.PREMIUM,
-      page: () => PremiumScreen(),
-      binding: PremiumBinding(),
-    ),
-    GetPage(
       name: _Paths.TERM,
       page: () => const TermScreen(),
       binding: TermBinding(),
     ),
     GetPage(
       name: _Paths.PRIVACY,
-      page: () => const PrivacyPolicyScreen(),
-      binding: PrivacyPolicyBinding(),
+      page: () => const PrivacyScreen(),
+      binding: PrivacyBinding(),
     ),
     GetPage(
       name: _Paths.NOT_VIBRATION,
       page: () => const NotVibrationScreen(),
       binding: NotVibrationBinding(),
+    ),
+    GetPage(
+      name: _Paths.MORE,
+      page: () => const MoreScreen(),
+      binding: MoreBinding(),
     ),
     GetPage(
       name: _Paths.LANGUAGE,

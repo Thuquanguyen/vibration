@@ -6,32 +6,32 @@ abstract class Routes {
 
   static const SPLASH = _Paths.SPLASH;
   static const MAIN = _Paths.MAIN;
-  static const HOME = _Paths.HOME;
-  static const SETTING = _Paths.SETTING;
-  static const INFORMATION = _Paths.INFORMATION;
+  static const MUSIC = _Paths.MUSIC;
+  static const MORE = _Paths.MORE;
   static const WELCOME = _Paths.WELCOME;
-  static const PREMIUM = _Paths.PREMIUM;
   static const PRIVACY = _Paths.PRIVACY;
   static const TERM = _Paths.TERM;
+  static const VIBRATION = _Paths.HOME;
+  static const PREMIUM = _Paths.PREMIUM;
+  static const INFORMATION = _Paths.INFORMATION;
   static const NOT_VIBRATION = _Paths.NOT_VIBRATION;
   static const MEDITATE = _Paths.MEDITATE;
   static const SLEEP = _Paths.SLEEP;
-  static const MUSIC = _Paths.MUSIC;
   static const LANGUAGE = _Paths.LANGUAGE;
 }
 
 abstract class _Paths {
   _Paths._();
   static const SPLASH = '/SPLASH';
-  static const MUSIC = '/MUSIC';
   static const MAIN = '/MAIN';
   static const HOME = '/HOME';
-  static const SETTING = '/SETTING';
-  static const INFORMATION = '/INFORMATION';
+  static const MUSIC = '/MUSIC';
+  static const MORE = '/MORE';
   static const WELCOME = '/WELCOME';
-  static const PREMIUM = '/PREMIUM';
   static const TERM = '/TERM';
+  static const PREMIUM = '/PREMIUM';
   static const PRIVACY = '/PRIVACY';
+  static const INFORMATION = '/INFORMATION';
   static const NOT_VIBRATION = '/NOT_VIBRATION';
   static const MEDITATE = '/MEDITATE';
   static const SLEEP = '/SLEEP';

@@ -5,10 +5,10 @@ import 'dart:ui' as ui;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
+import 'package:vibration_strong/core/extensions/text_ext.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image/image.dart' as image;
 import 'package:image_picker/image_picker.dart';
-import 'package:vibration_strong/core/extensions/text_ext.dart';
 
 import '../assets/app_assets.dart';
 import '../theme/app_colors.dart';

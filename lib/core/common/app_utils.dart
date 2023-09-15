@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
-import 'package:vibration_strong/screens/home/home_controller.dart';
 import 'data_holder.dart';
 
 

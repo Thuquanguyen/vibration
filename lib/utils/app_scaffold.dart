@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vibration_strong/utils/touchable.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:vibration_strong/utils/touchable.dart';
 
 import '../../core/common/app_func.dart';
 import '../core/assets/app_assets.dart';
@@ -19,27 +19,27 @@ class AppbarAction {
 class AppScaffold extends StatelessWidget {
   const AppScaffold(
       {Key? key,
-        required this.body,
-        this.title,
-        this.isScroll = false,
-        this.hideBackButton = false,
-        this.onWillPop,
-        this.padding,
-        this.margin,
-        this.safeArea = false,
-        this.paddingTop,
-        this.footer,
-        this.titleView,
-        this.titleStyle,
-        this.hideAppBar = false,
-        this.resizeToAvoidBottomInset,
-        this.appBarHeight,
-        this.actions,
-        this.color,
-        this.leading,
-        this.drawer,
-        this.customAppBar,
-        this.scaffoldkey})
+      required this.body,
+      this.title,
+      this.isScroll = false,
+      this.hideBackButton = false,
+      this.onWillPop,
+      this.padding,
+      this.margin,
+      this.safeArea = false,
+      this.paddingTop,
+      this.footer,
+      this.titleView,
+      this.titleStyle,
+      this.hideAppBar = false,
+      this.resizeToAvoidBottomInset,
+      this.appBarHeight,
+      this.actions,
+      this.color,
+      this.leading,
+      this.drawer,
+      this.customAppBar,
+      this.scaffoldkey})
       : super(key: key);
   final Widget body;
   final String? title;
@@ -126,7 +126,7 @@ class AppScaffold extends StatelessWidget {
                                   Text(
                                     title ?? '',
                                     style:
-                                    titleStyle ?? TextStyles.defaultStyle,
+                                        titleStyle ?? TextStyles.defaultStyle,
                                   ),
                             ),
                             Align(
@@ -136,12 +136,12 @@ class AppScaffold extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: actions
-                                      ?.map(
-                                        (AppbarAction e) => Touchable(
-                                        onTap: e.onPress ?? () {},
-                                        child: e.widgetAction),
-                                  )
-                                      .toList() ??
+                                          ?.map(
+                                            (AppbarAction e) => Touchable(
+                                                onTap: e.onPress ?? () {},
+                                                child: e.widgetAction),
+                                          )
+                                          .toList() ??
                                       [],
                                 ),
                               ),
@@ -152,9 +152,9 @@ class AppScaffold extends StatelessWidget {
                     if (customAppBar != null) customAppBar ?? const SizedBox(),
                     Expanded(
                         child: Container(
-                          color: color ?? AppColors.customColor1,
-                          child: body,
-                        ))
+                      color: color ?? AppColors.customColor1,
+                      child: body,
+                    ))
                   ],
                 ),
               ),
