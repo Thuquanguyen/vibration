@@ -26,18 +26,20 @@ class ItemMusicList extends StatelessWidget {
     return Touchable(
       onTap: () async {
         // show ads
+        if(musicModel?.isPremium == true){
+          Get.toNamed(Routes.PREMIUM);
+          return;
+        }
         if (AdmodHandle().ads.isLimit == false && AdmodHandle().isShowInter) {
           AdmodHandle().loadAdInter();
           if ((index ?? 0) % 2 == 0 &&
-              AdmodHandle().interstitialAd != null &&
-              index != controller?.indexOld.value) {
+              AdmodHandle().interstitialAd != null && index != controller?.indexOld.value) {
             // show ads
             showLoadingAds();
             AppFunc.setTimeout(() {
-              hideLoadingAds();
               AdmodHandle().interstitialAd?.show();
             }, 2000);
-          } else {
+          }else{
             hideLoadingAds();
           }
         }
@@ -49,11 +51,11 @@ class ItemMusicList extends StatelessWidget {
       },
       child: Container(
         width: Get.width,
-        margin: const EdgeInsets.symmetric(horizontal: 10),
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        decoration: const BoxDecoration(
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
             border:
-                Border(bottom: BorderSide(color: Colors.white38, width: 0.5))),
+            Border(bottom: BorderSide(color: Colors.white38, width: 0.5))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,72 +63,49 @@ class ItemMusicList extends StatelessWidget {
             Container(
               width: 50,
               height: 50,
-              clipBehavior: Clip.hardEdge,
-              decoration: const BoxDecoration(shape: BoxShape.circle),
               child: ImageHelper.loadFromAsset(
                   musicModel?.thumb ?? AppAssets.img1,
                   fit: BoxFit.cover),
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(shape: BoxShape.circle),
             ),
-            const SizedBox(
+            SizedBox(
               width: 10,
             ),
             Expanded(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  musicModel?.title ?? '',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyles.caption.regular
-                      .setColor(Colors.white)
-                      .setFontWeight(FontWeight.w500),
-                ),
-                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(
-                      Icons.person,
-                      size: 12,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(
-                      width: 3,
-                    ),
                     Text(
-                      "${musicModel?.view}",
-                      style: TextStyles.defaultStyle
+                      musicModel?.title ?? '',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyles.caption.regular
                           .setColor(Colors.white)
-                          .setTextSize(9),
+                          .setFontWeight(FontWeight.w500),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(top: 5, left: 5, right: 5),
-                      width: 1,
-                      height: 10,
+                      margin: const EdgeInsets.only(top: 5, left: 5),
+                      width: 40,
                       padding: EdgeInsets.all(3.w),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
+                      child: Center(
+                        child: Text(
+                          "${musicModel?.size} MB",
+                          style: TextStyles.defaultStyle
+                              .setColor(Colors.black)
+                              .setTextSize(9),
+                        ),
+                      ),
                     ),
-                    const Icon(
-                      Icons.account_balance_wallet,
-                      size: 12,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      "${musicModel?.size} MB",
-                      style: TextStyles.defaultStyle
-                          .setColor(Colors.white)
-                          .setTextSize(9),
-                    )
                   ],
-                ),
-              ],
-            )),
+                )),
+            if(musicModel?.isPremium == true)
+              ImageHelper.loadFromAsset(AppAssets.icPremium,
+                  width: 20, height: 20,tintColor: Colors.lime),
+            SizedBox(width: 10,),
             Icon(
               (musicModel?.isSelected ?? false)
                   ? Icons.pause_circle

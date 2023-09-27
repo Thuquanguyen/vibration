@@ -6,6 +6,7 @@ import '../../audio_player.dart';
 import '../../core/assets/app_assets.dart';
 import '../../core/base/base_controller.dart';
 import '../../core/model/music_model.dart';
+import '../../in_app_manage.dart';
 
 class SleepController extends BaseController {
   RxList<MusicModel> listMusics = [
@@ -67,6 +68,7 @@ class SleepController extends BaseController {
       url:
       "https://storage.googleapis.com/sleep_music/Chill%20Sleep%20lofi%20background%20music%20for%20video.mp3",
       size: 6.1,
+        isPremium: true
     ),
     MusicModel(
       title: 'Emotional Cinematic Background Music',
@@ -77,6 +79,7 @@ class SleepController extends BaseController {
       isSelected: false,
       view: 2763,
       size: 4.6,
+        isPremium: true
     ),
     MusicModel(
       title: 'Forest Lullaby',
@@ -94,6 +97,7 @@ class SleepController extends BaseController {
       isSelected: false,
       url: "https://storage.googleapis.com/sleep_music/Just%20Relax.mp3",
       size: 4.9,
+        isPremium: true
     ),
     MusicModel(
       thumb: AppAssets.sleep10,
@@ -103,6 +107,7 @@ class SleepController extends BaseController {
       view: 1524,
       url: "https://storage.googleapis.com/sleep_music/Moody%20Lofi%20Song.mp3",
       size: 5.9,
+        isPremium: true
     ),
     MusicModel(
       thumb: AppAssets.sleep11,
@@ -113,6 +118,7 @@ class SleepController extends BaseController {
       url:
       "https://storage.googleapis.com/sleep_music/Relax%20in%20the%20Forest%20background%20music%20for%20video.mp3",
       size: 6.0,
+        isPremium: true
     ),
     MusicModel(
       thumb: AppAssets.sleep12,
@@ -122,6 +128,7 @@ class SleepController extends BaseController {
       url: "https://storage.googleapis.com/sleep_music/Slow%20Motion.mp3",
       isSelected: false,
       size: 4.1,
+        isPremium: true
     ),
     MusicModel(
       thumb: AppAssets.sleep13,
@@ -132,6 +139,7 @@ class SleepController extends BaseController {
       isSelected: false,
       view: 1066,
       size: 10.6,
+        isPremium: true
     ),
     MusicModel(
       thumb: AppAssets.sleep14,
@@ -142,6 +150,7 @@ class SleepController extends BaseController {
       isSelected: false,
       view: 958,
       size: 5.8,
+        isPremium: true
     ),
     MusicModel(
       thumb: AppAssets.sleep5,
@@ -152,6 +161,7 @@ class SleepController extends BaseController {
       isSelected: false,
       view: 822,
       size: 3.9,
+        isPremium: true
     ),
   ].obs;
 
@@ -161,6 +171,12 @@ class SleepController extends BaseController {
 
   @override
   void onInit() {
+    if(IAPConnection().isAvailable){
+      for(int i = 0;i< listMusics.length;i++){
+        listMusics[i].isPremium = false;
+      }
+      listMusics.refresh();
+    }
     if(AdmodHandle().ads.isLimit == false){
       AdmodHandle().loadAdBanner3();
     }

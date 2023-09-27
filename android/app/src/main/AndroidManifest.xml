@@ -52,7 +52,7 @@
             android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3449522729010597~7980439162" />
+            android:value="ca-app-pub-9184134236196103~8911468765" />
 <!--            android:value="ca-app-pub-3940256099942544~3347511713" />-->
         <meta-data
             android:name="assets.audio.player.notification.icon"

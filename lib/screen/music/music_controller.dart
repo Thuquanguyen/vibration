@@ -6,6 +6,7 @@ import '../../audio_player.dart';
 import '../../core/assets/app_assets.dart';
 import '../../core/base/base_controller.dart';
 import '../../core/model/music_model.dart';
+import '../../in_app_manage.dart';
 
 class MusicController extends BaseController {
   RxList<MusicModel> listMusics = [
@@ -66,6 +67,7 @@ class MusicController extends BaseController {
       size: 2.2,
       view: 3511,
       thumb: AppAssets.img6,
+        isPremium: true
     ),
     MusicModel(
       title: 'Secret Garden',
@@ -75,6 +77,7 @@ class MusicController extends BaseController {
       size: 2.7,
       view: 620,
       thumb: AppAssets.img7,
+        isPremium: true
     ),
     MusicModel(
       title: 'Song From Secret Garden',
@@ -85,6 +88,7 @@ class MusicController extends BaseController {
       size: 3.3,
       view: 955,
       thumb: AppAssets.img8,
+        isPremium: true
     ),
     MusicModel(
       title: 'The Day Dream',
@@ -94,6 +98,7 @@ class MusicController extends BaseController {
       size: 3.1,
       view: 1554,
       thumb: AppAssets.img9,
+        isPremium: true
     ),
     MusicModel(
       title: 'Music Premium 1',
@@ -110,6 +115,7 @@ class MusicController extends BaseController {
       size: 3.7,
       view: 1024,
       thumb: AppAssets.img10,
+        isPremium: true
     ),
     MusicModel(
       title: 'Music Premium 3',
@@ -119,6 +125,7 @@ class MusicController extends BaseController {
       size: 5.2,
       view: 2165,
       thumb: AppAssets.img11,
+        isPremium: true
     ),
   ].obs;
 
@@ -128,6 +135,12 @@ class MusicController extends BaseController {
 
   @override
   void onInit() {
+    if(IAPConnection().isAvailable){
+      for(int i = 0;i< listMusics.length;i++){
+        listMusics[i].isPremium = false;
+      }
+      listMusics.refresh();
+    }
     if(AdmodHandle().ads.isLimit == false){
       AdmodHandle().loadAdBanner();
     }
