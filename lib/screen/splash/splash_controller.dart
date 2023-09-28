@@ -72,14 +72,14 @@ class SplashController extends BaseController {
                   Get.offAndToNamed((!isWelcome.value || !isLanguage)
                       ? Routes.LANGUAGE
                       : Routes.MAIN);
-                }, 500);
+                }, 2000);
               },
               callbackFail: () {
                 AppFunc.setTimeout(() {
                   Get.offAndToNamed((!isWelcome.value || !isLanguage)
                       ? Routes.LANGUAGE
                       : Routes.MAIN);
-                }, 500);
+                }, 2000);
               });
       } else {
         if(data != null){
