@@ -44,55 +44,24 @@ class WelcomeScreen extends GetView<WelcomeController> {
                   imgCover: "assets/images/banner_${index + 1}.jpeg",
                 ),
               )),
-          SizedBox(
-            height: 10,
-          ),
-          if (AdmodHandle().ads.isLimit == false)
-            Expanded(
-                child: Obx(() => Container(
-                      height: 100,
-                      width: Get.width,
-                      color: Colors.white,
-                      child: AdmodHandle().nativeSmallWelcomAdIsLoaded.value
-                          ? AdWidget(ad: AdmodHandle().nativeAdSmallWelcome!)
-                          : Center(
-                              child: Container(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                    ))),
-          SizedBox(
-            height: 15,
+          const SizedBox(
+            height: 25,
           ),
           Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Touchable(
                   onTap: () async {
-                    // show ads
-                    if (AdmodHandle().ads.isLimit == false) {
-                      showLoadingAds();
-                      AppFunc.setTimeout(() {
-                        AdmodHandle().interstitialAd!.show();
-                        hideLoadingAds();
-                        SharePreferencesHelper.setBool(KEY_WELCOME, true);
-                        SharePreferencesHelper.setBool(KEY_LANGUAGE, true);
-                        AppFunc.setTimeout(() {
-                          Get.offAllNamed(Routes.MAIN);
-                        }, 500);
-                      }, 1000);
-                    } else {
+                    SharePreferencesHelper.setBool(KEY_WELCOME, true);
+                    SharePreferencesHelper.setBool(KEY_LANGUAGE, true);
+                    AppFunc.setTimeout(() {
                       Get.offAllNamed(Routes.MAIN);
-                    }
+                    }, 500);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: Colors.white, width: 1)),
@@ -105,7 +74,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
                       ),
                     ),
                   )),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 width: 60,
                 height: 20,
@@ -125,33 +94,23 @@ class WelcomeScreen extends GetView<WelcomeController> {
                   itemCount: 3,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Obx(() => Touchable(
                   onTap: () async {
                     if (controller.pageIndex.value != 2) {
                       controller.controller.value.nextPage(
-                          duration: Duration(milliseconds: 100),
+                          duration: const Duration(milliseconds: 100),
                           curve: Curves.bounceIn);
                     } else {
-                      // show ads
-                      if (AdmodHandle().ads.isLimit == false) {
-                        showLoadingAds();
-                        AppFunc.setTimeout(() {
-                          AdmodHandle().interstitialAd!.show();
-                          hideLoadingAds();
-                          SharePreferencesHelper.setBool(KEY_WELCOME, true);
-                          SharePreferencesHelper.setBool(KEY_LANGUAGE, true);
-                          AppFunc.setTimeout(() {
-                            Get.offAllNamed(Routes.MAIN);
-                          }, 500);
-                        }, 1000);
-                      } else {
+                      SharePreferencesHelper.setBool(KEY_WELCOME, true);
+                      SharePreferencesHelper.setBool(KEY_LANGUAGE, true);
+                      AppFunc.setTimeout(() {
                         Get.offAllNamed(Routes.MAIN);
-                      }
+                      }, 500);
                     }
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: Colors.white, width: 1)),
@@ -166,12 +125,12 @@ class WelcomeScreen extends GetView<WelcomeController> {
                       ),
                     ),
                   ))),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           )
         ],

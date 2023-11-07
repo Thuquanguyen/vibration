@@ -20,21 +20,21 @@ class InformationScreen extends GetView<InformationController> {
           children: [
             ListTile(
               leading: Image.asset("assets/images/ic_app.png"),
-              title: Text(
+              title: const Text(
                 "Phone Vibration Strong",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              subtitle: Text("Email: support.vibration@gmail.com"),
+              subtitle: const Text("Email: support.vibration@gmail.com"),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               "     ${I18n().applicationInformationStr.tr}",
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: const TextStyle(fontWeight: FontWeight.w600),
               textAlign: TextAlign.left,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(

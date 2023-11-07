@@ -22,8 +22,6 @@ void main() {
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     // await Firebase.initializeApp();
     FlutterNativeSplash.remove();
-    await Firebase.initializeApp();
-    FirebaseDatabase.instance;
     NotificationService().initializePlatformNotifications();
     AppFunc.initLoadingStyle();
     MobileAds.instance.initialize();

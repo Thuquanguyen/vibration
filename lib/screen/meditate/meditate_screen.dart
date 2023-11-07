@@ -79,29 +79,6 @@ class MeditateScreen extends GetView<MeditateController> {
                         ),
                         itemCount: controller.listMusics.length,
                       ))),
-              if (AdmodHandle().ads.isLimit == false &&
-                  !IAPConnection().isAvailable)
-                Container(
-                    height: 1,
-                    width: Get.width,
-                    color: Colors.grey.withOpacity(0.5),
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 5, horizontal: 10)),
-              if (AdmodHandle().ads.isLimit == false &&
-                  !IAPConnection().isAvailable)
-                Obx(() => Visibility(
-                      visible: AdmodHandle().isLoadedBanner2.value,
-                      child: SizedBox(
-                        width: AdmodHandle().bannerAd2!.size.width.toDouble(),
-                        height: AdmodHandle().bannerAd2!.size.height.toDouble(),
-                        child: AdWidget(ad: AdmodHandle().bannerAd2!),
-                      ),
-                    )),
-              if (AdmodHandle().ads.isLimit == false &&
-                  !IAPConnection().isAvailable)
-                const SizedBox(
-                  height: 10,
-                )
             ],
           ),
         ));

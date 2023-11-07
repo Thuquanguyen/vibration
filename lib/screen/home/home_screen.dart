@@ -81,11 +81,6 @@ class HomeScreen extends GetView<HomeController> {
                                 onChange: (a, b) {
                                   controller.progress.value = a;
                                   if ((a == 0.5 || a == 0.85) && !IAPConnection().isAvailable) {
-                                    // showLoadingAds();
-                                    // AdmodHandle().loadAdInter();
-                                    // AppFunc.setTimeout(() {
-                                    //   AdmodHandle().interstitialAd?.show();
-                                    // }, 2000);
                                     Get.toNamed(Routes.PREMIUM);
                                   }else{
                                     Vibration.vibrate(
@@ -115,7 +110,7 @@ class HomeScreen extends GetView<HomeController> {
                                                     : Colors.black),
                                           ),
                                           if(!IAPConnection().isAvailable)
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 3,
                                             ),
                                           if(!IAPConnection().isAvailable)
@@ -140,7 +135,7 @@ class HomeScreen extends GetView<HomeController> {
                                                     : Colors.black),
                                           ),
                                           if(!IAPConnection().isAvailable)
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 3,
                                             ),
                                           if(!IAPConnection().isAvailable)
@@ -190,7 +185,7 @@ class HomeScreen extends GetView<HomeController> {
                     onTap: () {
                       Get.toNamed(Routes.PREMIUM);
                     },
-                    child: MyBlinkingButton()),
+                    child: const MyBlinkingButton()),
               )
           ],
         ),

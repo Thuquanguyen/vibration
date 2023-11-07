@@ -78,25 +78,6 @@ class MusicScreen extends GetView<MusicController> {
                     ),
                     itemCount: controller.listMusics.length,
                   ))),
-              if (AdmodHandle().ads.isLimit == false && !IAPConnection().isAvailable)
-                Container(
-                    height: 1,
-                    width: Get.width,
-                    color: Colors.grey.withOpacity(0.5),
-                    margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10)),
-              if (AdmodHandle().ads.isLimit == false && !IAPConnection().isAvailable)
-                Obx(() => Visibility(
-                      visible: AdmodHandle().isLoadedBanner.value,
-                      child: SizedBox(
-                        width: AdmodHandle().bannerAd!.size.width.toDouble(),
-                        height: AdmodHandle().bannerAd!.size.height.toDouble(),
-                        child: AdWidget(ad: AdmodHandle().bannerAd!),
-                      ),
-                    )),
-              if (AdmodHandle().ads.isLimit == false && !IAPConnection().isAvailable)
-                const SizedBox(
-                  height: 10,
-                )
             ],
           ),
         ));

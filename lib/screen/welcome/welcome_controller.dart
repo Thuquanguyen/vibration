@@ -23,9 +23,6 @@ class WelcomeController extends BaseController {
   @override
   void onInit() {
     // TODO: implement onInit
-    if (AdmodHandle().ads.isLimit == false){
-      AdmodHandle().loadAdInter();
-    }
     super.onInit();
   }
 }

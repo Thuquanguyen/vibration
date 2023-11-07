@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "726953310258",
-    "firebase_url": "https://vibration-strong-vibrato-ad19b-default-rtdb.firebaseio.com",
-    "project_id": "vibration-strong-vibrato-ad19b",
-    "storage_bucket": "vibration-strong-vibrato-ad19b.appspot.com"
+    "project_number": "651464027641",
+    "firebase_url": "https://vibration-strong-vibrato-5f6fc-default-rtdb.firebaseio.com",
+    "project_id": "vibration-strong-vibrato-5f6fc",
+    "storage_bucket": "vibration-strong-vibrato-5f6fc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:726953310258:android:25be58a4b6c5c9bd32e42b",
+        "mobilesdk_app_id": "1:651464027641:android:de3ece5c26e5f827b9a128",
         "android_client_info": {
           "package_name": "com.vibration.massage"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyADiH4ezw8Kxkzw7yOlb08WEOQfkXZFq3E"
+          "current_key": "AIzaSyDzYLnd4ReUpQxgbiZzWUTu9N0G136BwuA"
         }
       ],
       "services": {
@@ -24,7 +24,7 @@
           "other_platform_oauth_client": []
         }
       },
-      "admob_app_id": "ca-app-pub-9184134236196103~8911468765"
+      "admob_app_id": "ca-app-pub-7602924612279019~8179398068"
     }
   ],
   "configuration_version": "1"
