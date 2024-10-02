@@ -80,7 +80,7 @@ class HomeScreen extends GetView<HomeController> {
                                 height: 250,
                                 onChange: (a, b) {
                                   controller.progress.value = a;
-                                  if ((a == 0.5 || a == 0.85) && !IAPConnection().isAvailable) {
+                                  if ((a == 0.5 || a == 0.85) && !IAPConnection().isAvailable && AdmodHandle().ads.isInApp == true) {
                                     Get.toNamed(Routes.PREMIUM);
                                   }else{
                                     Vibration.vibrate(
@@ -113,7 +113,7 @@ class HomeScreen extends GetView<HomeController> {
                                             const SizedBox(
                                               width: 3,
                                             ),
-                                          if(!IAPConnection().isAvailable)
+                                          if(!IAPConnection().isAvailable && AdmodHandle().ads.isInApp == true)
                                             ImageHelper.loadFromAsset(
                                                 AppAssets.icPremium,
                                                 width: 12,
@@ -138,7 +138,7 @@ class HomeScreen extends GetView<HomeController> {
                                             const SizedBox(
                                               width: 3,
                                             ),
-                                          if(!IAPConnection().isAvailable)
+                                          if(!IAPConnection().isAvailable && AdmodHandle().ads.isInApp == true)
                                             ImageHelper.loadFromAsset(
                                                 AppAssets.icPremium,
                                                 width: 12,
@@ -177,7 +177,7 @@ class HomeScreen extends GetView<HomeController> {
                 ),
               ],
             ),
-            if (!IAPConnection().isAvailable)
+            if (!IAPConnection().isAvailable && AdmodHandle().ads.isInApp == true)
               Positioned(
                 top: 30,
                 right: 15,

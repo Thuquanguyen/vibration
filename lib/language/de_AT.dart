@@ -79,10 +79,10 @@ Note: Diese Anwendung ist wie ein Scherz am Telefon, sie ist nur eine ergänzend
 sind, sowie die Akkulaufzeit des Geräts.''',
   'title_purchase': 'Erleben Sie VibratorZen mit voller Leistung',
   'note_weekly_1':
-      'Sie haben 1 Woche Zeit, um die erweiterten Funktionen der App zu nutzen.',
+      'Sie haben 1 Woche (7 Tage) Zeit, um die erweiterten Funktionen der Anwendung zu nutzen, z. B. das Freischalten von 10 erweiterten Vibrationsmodi und das Freischalten von 7 erweiterten Meditationsliedern.',
   'note_monthly_1':
-      'Sie haben 1 Monat Zeit, um die erweiterten Funktionen der App zu nutzen. Darüber hinaus erhalten Sie zusätzlich 10 Tage Rabatt.',
-  'note_lifetime_1': 'Sie haben 1 Jahr Zeit, um die erweiterten Funktionen der App zu nutzen.',
+      'Sie haben 1 Monat (30 Tage) Zeit, um die erweiterten Funktionen der Anwendung zu nutzen, z. B. das Freischalten von 10 erweiterten Vibrationsmodi und das Freischalten von 7 erweiterten Meditationsliedern. Darüber hinaus erhalten Sie einen zusätzlichen Rabatt von 10 Tagen (insgesamt 40 Tage).',
+  'note_lifetime_1': 'Sie haben 1 Jahr (365 Tage) Zeit, um die erweiterten Funktionen der Anwendung zu nutzen, z. B. das Freischalten von 10 erweiterten Vibrationsmodi und das Freischalten von 7 erweiterten Meditationsliedern.',
   'note_2': 'Alle Leistungsstufen und 15 individuelle Massagen',
   'note_3':
       'Verbessern Sie Ihren Schlaf mit einer entspannenden Musikbibliothek zum Einschlafen',

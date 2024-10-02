@@ -77,10 +77,10 @@ Note: This application is like a joke on the phone, it is only complementary sol
 
 are, as well as the battery life of the device.''',
   'title_purchase': 'Experience VibratorZen at full power',
-  'note_weekly_1': 'You have 1 week to use the advanced features of the app.',
+  'note_weekly_1': 'You have 1 week (7 days) to use the application\'s advanced features such as unlocking 10 advanced vibration modes and unlocking 7 advanced meditation songs.',
   'note_monthly_1':
-      'You have 1 month to use the advanced features of the app. In addition, you get an additional 10 days discount.',
-  'note_lifetime_1': 'You have 1 year to use the advanced features of the app.',
+      'You have 1 month (30 days) to use the application\'s advanced features such as unlocking 10 advanced vibration modes and unlocking 7 advanced meditation songs. In addition, you get an additional 10 days(Total is 40 days) discount.',
+  'note_lifetime_1': 'You have 1 year (365 days) to use the application\'s advanced features such as unlocking 10 advanced vibration modes and unlocking 7 advanced meditation songs.',
   'note_2': 'All power levels and he 15 custom massages',
   'note_3': 'Improve your sleep with a relaxing music library to doze off to',
   'note_4':

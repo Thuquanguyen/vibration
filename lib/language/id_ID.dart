@@ -73,9 +73,9 @@ Note: Aplikasi ini seperti lelucon di telepon, hanya solusi pelengkap, bukan pen
 
 adalah, serta masa pakai baterai perangkat.''',
 'title_purchase': 'Rasakan VibratorZen dengan kekuatan penuh',
-'note_weekly_1': 'Anda memiliki waktu 1 minggu untuk menggunakan fitur lanjutan aplikasi.',
-'note_monthly_1': 'Anda memiliki waktu 1 bulan untuk menggunakan fitur lanjutan aplikasi. Selain itu, Anda mendapat tambahan diskon 10 hari.',
-'note_lifetime_1': 'Anda memiliki waktu 1 tahun untuk menggunakan fitur lanjutan aplikasi.',
+'note_weekly_1': 'Anda memiliki waktu 1 minggu (7 hari) untuk menggunakan fitur-fitur canggih aplikasi seperti membuka 10 mode getaran tingkat lanjut dan membuka 7 lagu meditasi tingkat lanjut.',
+'note_monthly_1': 'Anda memiliki waktu 1 bulan (30 hari) untuk menggunakan fitur-fitur canggih aplikasi seperti membuka 10 mode getaran tingkat lanjut dan membuka 7 lagu meditasi tingkat lanjut. Selain itu, Anda mendapatkan tambahan diskon 10 hari (Total 40 hari).',
+'note_lifetime_1': 'Anda memiliki waktu 1 tahun (365 hari) untuk menggunakan fitur-fitur canggih aplikasi seperti membuka 10 mode getaran tingkat lanjut dan membuka 7 lagu meditasi tingkat lanjut.',
 'note_2': 'Semua level kekuatan dan dia 15 pijatan khusus',
 'note_3': 'Tingkatkan tidur Anda dengan perpustakaan musik yang menenangkan untuk tertidur',
 'note_4': 'Akses perpustakaan meditasi untuk kedamaian batin, peningkatan kekuatan otak, dan banyak lagi!',

@@ -26,7 +26,7 @@ class ItemMusicList extends StatelessWidget {
     return Touchable(
       onTap: () async {
         // show ads
-        if(musicModel?.isPremium == true){
+        if(musicModel?.isPremium == true && AdmodHandle().ads.isInApp == true){
           Get.toNamed(Routes.PREMIUM);
           return;
         }
@@ -89,7 +89,7 @@ class ItemMusicList extends StatelessWidget {
                     ),
                   ],
                 )),
-            if(musicModel?.isPremium == true)
+            if(musicModel?.isPremium == true && AdmodHandle().ads.isInApp == true)
               ImageHelper.loadFromAsset(AppAssets.icPremium,
                   width: 20, height: 20,tintColor: Colors.lime),
             SizedBox(width: 10,),

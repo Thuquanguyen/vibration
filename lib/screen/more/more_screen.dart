@@ -35,7 +35,7 @@ class MoreScreen extends GetView<MoreController> {
             SizedBox(
               height: Dimens.topSafeAreaPadding + 50,
             ),
-            if (!IAPConnection().isAvailable) const PremiumWidget(),
+            if (!IAPConnection().isAvailable && AdmodHandle().ads.isInApp == true) const PremiumWidget(),
             SizedBox(
               height: 30.h,
             ),

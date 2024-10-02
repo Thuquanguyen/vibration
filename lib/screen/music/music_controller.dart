@@ -106,6 +106,7 @@ class MusicController extends BaseController {
       isSelected: false,
       url: "https://storage.googleapis.com/vibrate/Music%20Cover%201.mp3",
       size: 8.9,
+        isPremium: true
     ),
     MusicModel(
       title: 'Music Premium 2',

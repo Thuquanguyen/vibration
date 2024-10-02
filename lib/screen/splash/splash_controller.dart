@@ -36,6 +36,22 @@ class SplashController extends BaseController {
     if (Get.context != null) {
       Dimens.init(Get.context!);
     }
+    try {
+      await Firebase.initializeApp();
+    } catch (e) {
+      print("eeeerrrr = ${e.toString()}");
+    }
+    try{
+      final databaseRef = FirebaseDatabase.instance.ref();
+      databaseRef.onValue.listen((DatabaseEvent event) {
+        Map<String, dynamic> data = jsonDecode(jsonEncode(event.snapshot.value));
+        print("dataShow = ${data}");
+        final dataSnapshot = DataModel.fromJson(data);
+        AdmodHandle().ads = dataSnapshot;
+      });
+    }catch(error){
+      print('EROROOR = ${error.toString()}');
+    }
     Vibration.vibrate(duration: 1000, amplitude: 255);
     checkDirect();
     super.onInit();

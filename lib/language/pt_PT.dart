@@ -73,9 +73,9 @@ Nota: Este aplicativo é como uma brincadeira de telefone, é apenas uma soluç�
 
 são, bem como a duração da bateria do dispositivo.''',
   'title_purchase': 'Experimente VibratorZen com potência máxima',
-  'note_weekly_1': 'Você tem 1 semana para usar os recursos avançados do aplicativo.',
-  'note_monthly_1': 'Você tem 1 mês para usar os recursos avançados do aplicativo. Além disso, você ganha um desconto adicional de 10 dias.',
-  'note_lifetime_1': 'Você tem 1 ano para usar os recursos avançados do aplicativo.',
+  'note_weekly_1': 'Você tem 1 semana (7 dias) para usar os recursos avançados do aplicativo, como desbloquear 10 modos de vibração avançados e desbloquear 7 músicas de meditação avançadas.',
+  'note_monthly_1': 'Você tem 1 mês (30 dias) para usar os recursos avançados do aplicativo, como desbloquear 10 modos de vibração avançados e desbloquear 7 músicas de meditação avançadas. Além disso, você recebe um desconto adicional de 10 dias (total de 40 dias).',
+  'note_lifetime_1': 'Você tem 1 ano (365 dias) para usar os recursos avançados do aplicativo, como desbloquear 10 modos de vibração avançados e desbloquear 7 músicas de meditação avançadas.',
   'note_2': 'Todos os níveis de potência e 15 massagens personalizadas',
   'note_3': 'Melhore o seu sono com uma biblioteca de música relaxante para cochilar',
   'note_4': 'Acesse a biblioteca de meditação para paz interior, aumento da capacidade intelectual e muito mais!',

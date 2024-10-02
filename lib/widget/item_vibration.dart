@@ -29,7 +29,7 @@ class ItemVibration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Touchable(
       onTap: () async {
-        if (vibrationModel?.isPremium == true) {
+        if (vibrationModel?.isPremium == true && AdmodHandle().ads.isInApp == true) {
           Get.toNamed(Routes.PREMIUM);
           return;
         }
@@ -69,7 +69,7 @@ class ItemVibration extends StatelessWidget {
                           height: 18.w),
                     ),
                   ),
-                  if(vibrationModel?.isPremium == true)
+                  if(vibrationModel?.isPremium == true && AdmodHandle().ads.isInApp == true)
                     Positioned(
                       child: Container(
                         padding: EdgeInsets.only(left: 5,top: 3,right: 3,bottom: 3),

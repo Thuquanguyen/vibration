@@ -73,9 +73,9 @@ Note: Cette application est comme une blague au téléphone, ce n'est qu'une sol
 
 sont, ainsi que la durée de vie de la batterie de l'appareil.''',
 'title_purchase': 'Découvrez le vibromasseur Zen à pleine puissance',
-'note_weekly_1': 'Vous avez 1 semaine pour utiliser les fonctionnalités avancées de l\'application.',
-'note_monthly_1': 'Vous avez 1 mois pour utiliser les fonctionnalités avancées de l\'application. De plus, vous bénéficiez de 10 jours de réduction supplémentaires.',
-'note_lifetime_1': 'Vous avez 1 année pour utiliser les fonctionnalités avancées de l\'application.',
+'note_weekly_1': 'Vous disposez d\'une semaine (7 jours) pour utiliser les fonctionnalités avancées de l\'application telles que le déverrouillage de 10 modes de vibration avancés et le déverrouillage de 7 chansons de méditation avancées.',
+'note_monthly_1': 'Vous disposez d\'un mois (30 jours) pour utiliser les fonctionnalités avancées de l\'application telles que le déverrouillage de 10 modes de vibration avancés et le déverrouillage de 7 chansons de méditation avancées. De plus, vous bénéficiez d\'une réduction supplémentaire de 10 jours (le total est de 40 jours).',
+'note_lifetime_1': 'Vous disposez d\'un an (365 jours) pour utiliser les fonctionnalités avancées de l\'application telles que le déverrouillage de 10 modes de vibration avancés et le déverrouillage de 7 chansons de méditation avancées.',
 'note_2': 'Tous les niveaux de puissance et 15 massages personnalisés',
 'note_3': 'Améliorez votre sommeil avec une bibliothèque musicale relaxante pour vous endormir',
 'note_4': 'Accédez à la bibliothèque de méditation pour une paix intérieure, une puissance cérébrale accrue et bien plus encore !',

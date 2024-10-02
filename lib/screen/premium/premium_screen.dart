@@ -126,7 +126,7 @@ class PremiumScreen extends GetView<PremiumController> {
                               _item(
                                   I18n().note4Str.tr),
                               _item(I18n().note5Str.tr),
-                              _item(I18n().note6Str.tr),
+                              // _item(I18n().note6Str.tr),
                               SizedBox(
                                 height: 20.h,
                               ),

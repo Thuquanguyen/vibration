@@ -20,7 +20,17 @@ void main() {
   void initApp() async {
     WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-    // await Firebase.initializeApp();
+    try {
+      await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: 'AIzaSyCh3j4zNoqHnvIsA71re_gm4frYfzoaLys',
+              appId: '1:386200777758:android:640b4d43cdaf7f31246a0f',
+              messagingSenderId: '386200777758',
+              projectId: 'vibration-imessage-ae7ed'));
+    } catch (e) {
+      print("eeeerrrr = ${e.toString()}");
+    }
+    FirebaseDatabase.instance;
     FlutterNativeSplash.remove();
     NotificationService().initializePlatformNotifications();
     AppFunc.initLoadingStyle();
